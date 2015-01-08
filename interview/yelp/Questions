@@ -1,0 +1,56 @@
+Part 2
+
+1. SQL index
+看完数据库那张来做这块
+http://www.jfox.info/SQL-you-hua
+http://www.oschina.net/question/94949_37097
+
+2. URL 输入有加载步骤 
+要尽量靠上Security，比如SSL,TLS, 还有cookie， Session的内容，
+应该除了 DNS 这些，还要说一些缓存层，CDN这些内容
+
+http://369369.blog.51cto.com/319630/812889
+
+3.如何判断缓存中的网页是否过期，哪些文件需要存入缓存,
+if modified since
+last modified
+
+
+Part 3
+ 1. 介绍一下你自己，
+ 2. 介绍一个你最喜欢的项目
+ PS: 这两题大概花了30分钟，由一个主题，引出很多小问题，我刚提到测试，他就问怎么测试，大概的工作流程是怎样。
+ 这两个问题应该是对方了解的重点，如果交流的好，很容易建立起一个形象，我的思路大概这样： 我做过A，所以在A‘方面能力很强
+ ，我学过B，所以我能去做B’，我有C这方面的经验，然后有这些C‘方面的体会。
+ 
+ 3. 网站变慢，可能有什么因素？ load balancing有问题，图片太多，数据库操作
+每台web server 负载太高，可能需要新的服务器集群？ 
+数据量增大, 部分sql 太慢，可能考虑分表？
+load banacing 有点问题？
+
+ 
+ 
+Part 4
+1. 我有个网页，用户反映每次打开加载都很慢，说3个原因为什么？ 
+（我也不是那么清楚。。。就想起什么说什么，说了bandwidth，说了database优化不够，数据量大很多join，还说了网页做的太次，全是image，可以用caching解决）
+数据量大很多join，考虑反范式的设计
+页面可能没有压缩, GZIP + 缓存
+img过多？没有单独服务器？
+
+2. 然后他还问了下，HTML，CSS，Javascript我们可以caching哪几个？
+all these
+
+
+Part 5
+1. Http GET POST 区别, 最后挖到POST的request里header中message size字段是为了让server提前给incoming message安置内存用的，这也是POST的设计初衷。
+2. HHTPS SQL Injection， XSS, Cookies 作用 特点
+
+Part 6
+1. Skype Interview
+2. 进程线程区别
+3. 死锁的条件，如何判断
+4. context switch什么的
+5. 如何改进Yelp。
+ 
+ 
+ 
