@@ -39,18 +39,11 @@ public class Fifth {
 	}
 	
 	public static void main(String[] args) {
-		ListNode l1 = new ListNode(1);
-		ListNode l2 = new ListNode(2);
-		ListNode l3 = new ListNode(3);
-		ListNode l4 = new ListNode(4);
-		l1.next = l2; l2.next = l3; l3.next = l4;
-
-		ListNode newHead = reverseLinkedList(l1);
-		
-		while (newHead != null) {
-			System.out.print(newHead.val + " -> ");
-			newHead = newHead.next;
+		double newValue = 0.099;
+		if (newValue - 0.1 < 0.001) {
+			newValue = 0.1;
 		}
+		System.out.println(String.format("%.3f", 0.0005));
 	}
 	
 	
