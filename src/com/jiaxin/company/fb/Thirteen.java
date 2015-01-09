@@ -1,5 +1,6 @@
 package com.jiaxin.company.fb;
 
+
 /*
  * Phone:
  * 1. Given a set of binary tree nodes, return null if the nodes do not form a valid binary tree and 
@@ -22,5 +23,45 @@ english word. Return zero if there is no valid partitioning. (Jedi)
 
 
 public class Thirteen {
-
+	/**********************************************************************************************************/
+	// 
+	
+	
+	
+	
+	/**********************************************************************************************************/
+	// 1. Binary search in a ratated array	
+	public int search(int[] A, int target) {
+		
+		
+		return 0;
+    }
+	
+	/**********************************************************************************************************/
+	// 4. Print tree by levels (Ninja)
+	
+	/**********************************************************************************************************/
+	// 5. Dedupe string (Ninja) For dedupe str, he knew he would need a lookup structure, and had good questions on constraints on the characters (ascii, unicode, etc.) Coded quickly well.
+	
+	/**********************************************************************************************************/
+	// 6. Sqrt (Ninja)
+	
+	/**********************************************************************************************************/
+	// 7. Word break
+	
+	
+	
+	
+	class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; next = null; }
+	}
+	
+	class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
 }
