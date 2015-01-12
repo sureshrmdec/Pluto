@@ -1,5 +1,8 @@
 package com.jiaxin.company.fb;
 
+import com.jiaxin.company.fb.Twelfth.ListNode;
+import com.jiaxin.company.fb.Twelfth.TreeNode;
+
 /*
  * Phone:
  * 1. Implement big/littke endianess check function
@@ -16,4 +19,17 @@ package com.jiaxin.company.fb;
  */
 public class Nighth {
 
+	
+	class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; next = null; }
+	}
+	
+	class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
 }

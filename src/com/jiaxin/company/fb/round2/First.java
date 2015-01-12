@@ -15,8 +15,8 @@ import java.util.Queue;
  * 3. Roman to Integer (Ninja)
  * 4. Live likes/moments for the android app (Pirate)
  * 5. Look and say (Ninja)
- * 6. Inplace_merge (Ninja)
- * 7. Simple regex (Jedi)
+ * 6. Inplace_merge (Ninja)  -- work on it.
+ * 7. Simple regex (Jedi) -- not sure the quesiton.
  *  
  */
 public class First {
@@ -64,7 +64,73 @@ public class First {
 	}
 	
 	// 3. Roman to Integer
+	public int romanToInt(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		
+		int result = charToInt(s.charAt(0));
+		
+		for (int i = 1; i < s.length(); i++) {
+			int last = charToInt(s.charAt(i - 1));
+			int current = charToInt(s.charAt(i));
+			
+			if (last < current) {
+				result += current - 2 * last;
+			} else {
+				result += current;
+			}
+		}
+		
+		return result;
+	} 
 	
+	public int charToInt(char c) {
+		switch (c) {
+		case 'I':
+			return 1;
+		case 'V':
+			return 5;
+		case 'X':
+			return 10;
+		case 'L':
+			return 50;
+		case 'C':
+			return 100;
+		case 'D':
+			return 500;
+		case 'M':
+			return 1000;
+		default:
+			return 0;
+		}
+    }
+	
+	// 5. Look and say
+	public String countAndSay(int n) {
+		String oldString = "1";
+		
+		while (--n > 0) {
+			StringBuilder sb = new StringBuilder();
+			
+			for (int i = 0; i < oldString.length(); i++) {
+				int count = 1;
+				
+				while (i + 1  < oldString.length() && oldString.charAt(i) == oldString.charAt(i + 1)) {
+					i++;
+					count++;
+				}
+				
+				sb.append(String.valueOf(count) + String.valueOf(oldString.charAt(i)));
+			}
+			
+			oldString = sb.toString();
+		}
+		
+		return oldString;
+	}
+	
+	// 6. Inplace_merge (Ninja)  -- work on it.
 	
 	
 	class ListNode {

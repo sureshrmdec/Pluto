@@ -1,5 +1,10 @@
 package com.jiaxin.company.fb;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 /*
  * Phone:
  * 1. Powerset -- same as combination, 2^n
@@ -19,5 +24,287 @@ machines needed. (Pirate)
  * 7. Design newsfeed backend. (Pirate) 
  */
 public class Eighth {
+	
+	/**************************************************************************/
+	// 1.Powerset -- same as combination, 2^n
+	public List<List<Integer>> combination(int[] A) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		List<Integer> list = new ArrayList<Integer>();
+		Arrays.sort(A);
+		
+		if (A == null || A.length == 0) {
+			return result;
+		}
+		
+		combinationHelper(result, list, A, 0);
+		
+		return result;
+	}
+	
+	private void combinationHelper(List<List<Integer>> result, List<Integer> list, int[] A, int position) {
+		result.add(new ArrayList<Integer>(list));
+		
+		for (int i = 0; i < list.size(); i++) {
+			list.add(A[i]);
+			combinationHelper(result, list, A, i + 1);
+			list.remove(list.size() - 1);
+		}
+	}
 
+	/**************************************************************************/
+	// 2. Phone number words-- Test case [""] -> [""] but not [], digits.length == 0 can't add into first parameter validation
+	char[][] map = {{}, {}, {'a','b','c'}, {'d','e','f'}, {'g','h','i'}, {'j','k','l'}, {'m','n','o'}, 
+			{'p','q','r','s'}, {'t','u','v'}, {'w','x','y','z'}};
+	
+	public List<String> letterCombinations(String digits) {
+		List<String> result = new ArrayList<String>();
+		StringBuilder sb = new StringBuilder();
+		
+		if (digits == null) {
+			return result;
+		}
+		
+		phoneNumberhelper(result, sb, digits);
+		
+		return result;
+	}
+
+	private void phoneNumberhelper(List<String> result, StringBuilder sb, String digits) {
+		if (sb.length() == digits.length()) {
+			result.add(sb.toString());
+			return;
+		}
+		
+		int index = Character.getNumericValue(digits.charAt(sb.length()));
+		
+		for (int i = 0; i < map[index].length; i++) {
+			sb.append(map[index][i]);
+			phoneNumberhelper(result, sb, digits);
+			sb.deleteCharAt(sb.length() - 1);
+		}
+
+	}
+
+	/**************************************************************************/
+	// 3. Roman numebrs to int
+	public int romanToInt(String s) {
+		if (s == null || s.length() == 0) {
+			return 0;
+		}
+		
+		int result = charToInt(s.charAt(0));
+		
+		for (int i = 1; i < s.length(); i++) {
+			int last = charToInt(s.charAt(i - 1));
+			int current = charToInt(s.charAt(i));
+			
+			if (last < current) {
+				result += current - 2 * last;
+			} else {
+				result += current;
+			}
+		}
+		
+		return result;
+	}
+	
+	public int charToInt(char c) {
+		switch (c) {
+		case 'I':
+			return 1;
+		case 'V':
+			return 5;
+		case 'X':
+			return 10;
+		case 'L':
+			return 50;
+		case 'C':
+			return 100;
+		case 'D':
+			return 500;
+		case 'M':
+			return 1000;
+		default:
+			return 0;
+		}
+	}
+
+	
+	/**************************************************************************/
+	// 2. Give an array with unique doubles, find all quadruples that match the condition a+b+c+d = 0 (Ninja)
+    public List<List<Integer>> fourSum(int[] num, int target) {
+    	List<List<Integer>> result = new ArrayList<List<Integer>>();
+    	 
+    	if (num == null || num.length == 0) {
+    		return result;
+    	}
+    	
+    	Arrays.sort(num);
+   
+    	for (int i = 0; i < num.length - 3; i++) {
+    		if (i != 0 && num[i] == num[i - 1]) {
+    			continue;
+    		}
+    		
+    		for (int j = i + 1; j < num.length - 2; j++) {
+    			if (j != i + 1 && num[j] == num[j - 1]) {
+    				continue;
+    			}
+    			
+    			int left = j + 1;
+    			int right = num.length - 1;
+    			
+    			while (left < right) {
+    				int sum = num[i] + num[j] + num[left] + num[right];
+    				if (sum == target) {
+    					List<Integer> list = new ArrayList<Integer>();
+    					list.add(num[i]);
+    					list.add(num[j]);
+    					list.add(num[left]);
+    					list.add(num[right]);
+    					
+    					result.add(list);
+    					left++;
+    					right--;
+    					
+    					while (left < right && num[left] == num[left - 1]) {
+    						left++;
+    					}
+    					
+    					while (left < right && num[right] == num[right + 1]) {
+    						right--;
+    					}
+    				} else if (sum < target) {
+    					left++;
+    				} else {
+    					right--;
+    				}
+    			}
+    		}
+    	}
+    	
+    	return result;
+    }
+	
+	
+	/**************************************************************************/
+	// 3. Given a rotated sorted array in one specified direction, return if a number exists or not. e.g 7 8 1 3 6 x=1  (Ninja)
+    public int search(int[] A, int target) {
+    	if (A == null || A.length == 0) {
+    		return -1;
+    	}
+		
+    	int start = 0;
+    	int end = A.length - 1;
+    	
+    	while (start + 1 < end) {
+    		int mid = start + (end - start) / 2;
+    		
+    		if (A[mid] == target) {
+    			return mid;
+    		}
+    		
+    		if (A[start] < A[mid]) {
+    			if (target >= A[start] && target < A[mid]) {
+    				end = mid;
+    			} else {
+    				start = mid;
+    			}
+    		} else {
+    			if (target < A[mid] && target <= A[end]) {
+    				start = mid;
+    			} else {
+    				end = mid;
+    			}
+    		}
+    	}
+    	
+    	if (A[start] == target) {
+    		return start;
+    	}
+    	
+    	if (A[end] == target) {
+    		return end;
+    	}
+    	
+    	return -1;
+    }
+	
+	
+	/**************************************************************************/
+	// 4. Palindrome Detector (Jedi) -> Valid Palindrome
+    public boolean isPalindrome(String s) {
+		if (s == null) {
+			return false;
+		}
+		
+		int left = 0;
+		int right = s.length() - 1;
+		
+		while (left < right) {
+			char head = Character.toLowerCase(s.charAt(left));
+			char rear = Character.toLowerCase(s.charAt(right));
+			
+			if (!Character.isLetterOrDigit(head)) {
+				left++;
+				continue;
+			}
+			
+			if (!Character.isLetterOrDigit(rear)) {
+				right--;
+				continue;
+			}
+			
+			if (head != rear) {
+				return false;
+			}
+			
+			left++;
+			right--;
+		}
+    	
+    	return true;
+    }
+    
+	
+	
+	/**************************************************************************/
+	// 5. Read 4k  (Ninja)
+	
+    
+    
+	
+	
+	/**************************************************************************/
+	// 6. Given a DAG(Directed Acyclic Graph), find the longest path in it. (Ninja) - Graph Longest Path
+	
+	
+	
+	/**************************************************************************/
+	// 7. Design newsfeed backend. (Pirate) 
+	
+	
+
+
+
+	public static void main(String[] args) {
+		int[] A = {1, 2, 3};	
+	}
+	
+	class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+	
+	class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
+	
 }

@@ -29,6 +29,7 @@ something lower like 2, since it's very unlikely in English. (Pirate)
  */
 
 public class Fourteen {
+	/***********************************************************************/
 	// Anagram 
 	// Test case: ["",""]  single one. mainly on temp.size() > 1
 	public List<String> anagrams(String[] strs) {
@@ -60,33 +61,49 @@ public class Fourteen {
 		return result;
     }
 	
-	public String serialization(TreeNode root) {
-		StringBuilder sb = new StringBuilder();
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		
-		while (!stack.isEmpty() || root != null) {
-			while (root != null) {
-				sb.append(root.val);
-				stack.push(root);
-				root = root.left;
-			}
-			
-			if (!stack.isEmpty()) {
-				root = stack.pop();
-				root = root.right;
-			}
-		}
-		
-		return sb.toString();
-	}
-	
-	public TreeNode deserialization(String string) {
-		
-		
-		return null;
-	}
+	/***********************************************************************/
+//	void readBinaryTreeHelper(TreeNode root, boolean left, Reader reader) {
+//		  String token = reader.nextToken();
+//		  if (token == "#") {
+//		    return;
+//		  } else {
+//		    TreeNode newNode = new TreeNode(Integer.parseInt(token));
+//		    if (left) {
+//		    	root.left = newNode;
+//		    }
+//		      
+//		    else {
+//		    	root.right = newNode;
+//		    }
+//		      
+//		    readBinaryTreeHelper(newNode, true, reader);
+//		    readBinaryTreeHelper(newNode, false, reader);
+//		  }
+//		 
+//		TreeNode readBinaryTree(Reader reader) {
+//		  String token = reader.nextToken();
+//		  if (token == "#") {
+//		    return null;
+//		  } else {
+//		    TreeNode root = new TreeNode(Integer.parseInt(token));
+//		    readBinaryTreeHelper(root, true, reader);
+//		    readBinaryTreeHelper(root, false, reader);
+//		    return root;
+//		  }
+//		}
 	
 
+	/***********************************************************************/
+	//http://www.weiming.info/zhuti/JobHunting/32346637/
+	public boolean strStr(String haystack, String needle) {
+		
+		
+		
+		return false;
+	}
+	
+	/***********************************************************************/
+	// 1. Print tree by levels. (Ninja) 
 	
 	public static void main(String[] args) {
 		String[] input = new String[1];
@@ -95,7 +112,13 @@ public class Fourteen {
 	}
 	
 	
-	public class TreeNode {
+	class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; next = null; }
+	}
+	
+	class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
