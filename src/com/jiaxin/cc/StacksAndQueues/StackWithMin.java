@@ -2,13 +2,13 @@ package com.jiaxin.cc.StacksAndQueues;
 
 import java.util.Stack;
 
+@SuppressWarnings("serial")
 public class StackWithMin extends Stack<Integer>{
 	Stack<Integer> minStack;
 	
 	public StackWithMin() {
 		minStack = new Stack<Integer>();
 	}
-	
 	
 	public void push(int value) {
 		if (value < getMin()) {

@@ -3,7 +3,7 @@ package homework;
 /**
  * Solution: 
  * 1. if A[mid] < A[mid - 1]. There must be a top on the left side
- * 2. if A[mid] > A[mid + 1]. There must be a top on the right side 
+ * 2. if A[mid] < A[mid + 1]. There must be a top on the right side 
  * @author jeffwan
  * @date Apr 25, 2014
  */
