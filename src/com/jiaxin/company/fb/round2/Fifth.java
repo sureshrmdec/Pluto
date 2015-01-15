@@ -1,10 +1,13 @@
 package com.jiaxin.company.fb.round2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /*
  * Andorid, skip most 
  * Phone:
- * 1. Max Number of meetings to attend from a list of meetings
+ * 1. Max Number of meetings to attend from a list of meetings -- find largest single intervals 
  * 2. Remove zeros from array -- same as sort colors
  * 
  * onsite
@@ -16,11 +19,16 @@ package com.jiaxin.company.fb.round2;
  */
 public class Fifth {
 	// 1. Max number of meetings to attend from a list of meetings
-	// DP? 
+	// 2. You have a number of meetings (with their start and end times). You need to schedule them using the minimum number of rooms. Return the list of meetings in every room. 
+	public int maxMeetings(List<Interval> intervals) {
+		
+		
+		return 0;
+	}
 	
 	
 	// 2. remove zeros from array [1, 0, 2, 4, 0, 3] -> [1, 4, 3, 2, ?, ?]. return nonZero numbers
-	// Test case: zeroIndex--, met 0, at last, we need to make it pointer to non-zero element
+	// Test case: zeroIndex--, points to 0, so must be i <= zeroIndex
 	public static int removeZeros(int[] A) {
 		if (A == null || A.length == 0) {
 			return 0;
@@ -40,7 +48,7 @@ public class Fifth {
 			}
 		}
 		
-		return zeroIndex;
+		return zeroIndex + 1;
 	}
 	
 	
@@ -54,8 +62,8 @@ public class Fifth {
 		}
 		
 		if (lastNode != null) {
-			lastNode.right = root;
 			lastNode.left = null;
+			lastNode.right = root;
 		}
 		
 		lastNode = root;
@@ -87,21 +95,21 @@ public class Fifth {
 	}
 
 	public int charToInt(char c) {
-		return 0; // I don't want to waste time on dup things.
+		return 0; // During the interview, talk to interviewer about this and save some time. 
 	}
 	
 	// 3. Design an HTTP downloader. Be explicit about classes, their functions, data structures and method signatures. (Pirate)
 	
 	
 	// 4. Reverse Linked List
-	public static ListNode reverseLinkedList(ListNode root) {
+	public static ListNode reverseLinkedList(ListNode head) {
 		ListNode newHead = null;
 		
-		while (root != null) {
-			ListNode temp = root.next;
-			root.next = newHead;
-			newHead = root;
-			root = temp;
+		while (head != null) {
+			ListNode temp = head.next;
+			head.next = newHead;
+			newHead = head;
+			head = temp;
 		}
 		
 		return newHead;
@@ -112,10 +120,36 @@ public class Fifth {
 	public static void main(String[] args) {
 		int[] A = {1, 0, 2, 4, 0, 3} ;
 		
+		removeZeros(A);
+		List<Integer> list = new ArrayList<Integer>();
+		for (Integer x : A) {
+			list.add(x);
+		}
+		
+		System.out.println(list);
+		
+		ListNode node1 = new ListNode(1);
+		ListNode node2 = new ListNode(2);
+		ListNode node3 = new ListNode(3);
+		node1.next = node2; node2.next = node3;
+		
+		ListNode head = reverseLinkedList(node1);
+		
+		while (head != null) {
+			System.out.println(head.val);
+			head = head.next;
+		}
 	}
 	
 	
-	class ListNode {
+	 class Interval {
+		 int start;
+		 int end;
+		 Interval() { start = 0; end = 0; }
+		 Interval(int s, int e) { start = s; end = e; }
+	 }
+	
+	static class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) {

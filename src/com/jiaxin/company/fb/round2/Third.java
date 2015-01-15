@@ -17,7 +17,7 @@ bonus of the case you are on).
  * 1. Inorder binary tree iterator (Ninja)
  * 2. Look and say (Ninja)
  * 3. Proximity Search (Pirate)
- * 4. Max Rectabgke Area Underneath Histogram (Jedi)
+ * 4. Max Rectangle Area Underneath Histogram (Jedi)
  * 5. Find the kth Largest element in 2 sorted array of integers (Ninja)
  * 6.
  * 
@@ -29,7 +29,7 @@ public class Third {
 	// 1. Given two arrays of integers, A and B, find out how many different integers are in both A and B? -- array union, intersection, 
 	// MyWay is counting..
 	public static List<Integer> findDiffInteger(int[] A, int[] B) {
-		List<Integer> result = new ArrayList<>(A.length);
+		List<Integer> result = new ArrayList<Integer>(A.length);
 		boolean[] Aarray = new boolean[A.length];
 		boolean[] Barray = new boolean[B.length];
 		

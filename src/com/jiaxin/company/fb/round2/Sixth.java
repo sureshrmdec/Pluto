@@ -130,7 +130,7 @@ public class Sixth {
 	}
 
 	private List<Integer> convertToList(int[] list) {
-		List<Integer> tempList = new ArrayList<>();
+		List<Integer> tempList = new ArrayList<Integer>();
 		for (int i : list) {
 			tempList.add(i);
 		}

@@ -25,8 +25,6 @@ public class StackWithMin extends Stack<Integer>{
 		}
 		return value;
 	}
-	
-	
 
 	private int getMin() {
 		if (!minStack.isEmpty()) {
@@ -36,6 +34,4 @@ public class StackWithMin extends Stack<Integer>{
 		}
 		
 	}
-	
-	
 }

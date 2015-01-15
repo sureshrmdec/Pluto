@@ -2,13 +2,18 @@ package com.jiaxin.company.fb.round2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+
+
 
 /*
  * Android, skip
  * 
  * Phone: 
- * 1. in-place palindrome
+ * 1. in-place palindrome -- in-place doesn't make sense, standard way must be in-place
  * 2. 3sum 
  * 3. Add Binary
  * 
@@ -103,16 +108,160 @@ public class Fourth {
 	
 	
 	// 3. Serialize / Deserialize a binary tree
-	
-	
-	
-	
-	// 4. Anagram bucket (Jedi)
-	
-	public static void main(String[] args) {
-		String s = "1a2";
+	public static String serialize(TreeNode root) {
+		StringBuilder sb = new StringBuilder();
 		
-		System.out.print(isPalindrome(s));
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		
+		while (!stack.isEmpty() || root != null) {
+			while (root != null) {
+				sb.append(root.val + ",");
+				
+				if (root.left == null) {
+					sb.append("#" + ",");
+				}
+				
+				stack.push(root);
+				root = root.left;
+			}
+			
+			if (!stack.isEmpty()) {
+				root = stack.pop();
+				
+				if (root.right == null) {
+					sb.append("#" + ",");
+				} 
+				
+				root = root.right;
+			}
+		}
+		
+		return sb.toString().substring(0, sb.length() - 1);
 	}
 	
+	
+	public static String serializeRecursive(TreeNode root) {
+		StringBuilder sb = new StringBuilder();
+		
+		serializeHelper(sb, root);
+		
+		return sb.toString().substring(0, sb.length() - 1);
+	}
+	
+	private static void serializeHelper(StringBuilder sb, TreeNode root) {
+		if (root == null) {
+			sb.append("#" + ",");
+			return;
+		}
+		
+		
+		sb.append(root.val + ",");
+		serializeHelper(sb, root.left);
+		serializeHelper(sb, root.right);
+	}
+
+	static int i = 0;
+	public static TreeNode deserialize(String str) {
+		String[] strs = str.split(",");
+		
+		return deserializeHelper(strs);		
+	}
+	
+
+	private static TreeNode deserializeHelper(String[] strs) {
+		if (i > strs.length - 1) {
+			return null;
+		}
+		
+		if (strs[i].endsWith("#")) {
+			i++;
+			return null;
+		}
+		
+		TreeNode node = new TreeNode(Integer.parseInt(strs[i++])); 
+		node.left = deserializeHelper(strs);
+		node.right = deserializeHelper(strs);
+		
+		return node;
+	}
+
+	// 4. Anagram bucket (Jedi) - has the thought of Bucket sort - same to LC. -- Test case: ["", ""]
+    public static List<String> anagrams(String[] strs) {
+    	List<String> result = new ArrayList<String>();
+    	Map<String, List<String>> map = new HashMap<String, List<String>>();
+		
+    	if (strs == null || strs.length == 0) {
+    		return result;
+    	}
+    	
+    	for (String str : strs) {
+    		char[] charArray = str.toCharArray();
+    		Arrays.sort(charArray);
+    		String key = String.valueOf(charArray);
+    		
+    		if (!map.containsKey(key)) {
+    			map.put(key, new ArrayList<String>());
+    		}
+    		
+    		map.get(key).add(str);
+    	}
+    	
+    	for (List<String> list : map.values()) {
+    		if (list.size() > 1) {
+    			result.addAll(list);
+    		}
+    	}
+    	
+    	return result;
+    }
+	
+	
+	public static void main(String[] args) {
+		
+		String[] strs = {"",""};
+		System.out.println(anagrams(strs));
+		
+//		System.out.print(isPalindrome(s));
+		/* 		30
+		 * 	 10    20
+		 * 50   45   35
+		 *  
+		 */
+		
+		TreeNode node30 = new TreeNode(30);
+		TreeNode node10 = new TreeNode(10);
+		TreeNode node20 = new TreeNode(20);
+		TreeNode node50 = new TreeNode(50);
+		TreeNode node45 = new TreeNode(45);
+		TreeNode node35 = new TreeNode(35);
+		
+		node30.left = node10; node30.right = node20;
+		node10.left = node50; 
+		node20.left = node45; node20.right = node35;
+		
+		String result = serializeRecursive(node30);
+		System.out.println("result " + result);
+		
+		TreeNode newRoot = deserialize(result);
+		result = serializeRecursive(newRoot);
+		System.out.println("result " + result);
+		
+	}
+	
+	
+	static class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) {
+			val = x;
+			next = null;
+		}
+	}
+	
+	static class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
+	}
 }
