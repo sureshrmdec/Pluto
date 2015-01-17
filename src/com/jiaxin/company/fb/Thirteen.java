@@ -1,11 +1,9 @@
 package com.jiaxin.company.fb;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
@@ -217,7 +215,7 @@ public class Thirteen {
 
 
 	public static void main(String[] args) {
-		Set<String> dict = new HashSet<>();
+		Set<String> dict = new HashSet<String>();
 		dict.add("cat");
 		dict.add("cats");
 		dict.add("and");
@@ -225,7 +223,7 @@ public class Thirteen {
 		dict.add("dog");
 		String s = "catsanddog";
 		
-		Set<String> dicts = new HashSet<>();
+		Set<String> dicts = new HashSet<String>();
 		dicts.add("a");
 		String ss = "a";
 		

@@ -21,7 +21,8 @@ public class Fifth {
 	// 1. Max number of meetings to attend from a list of meetings
 	// 2. You have a number of meetings (with their start and end times). You need to schedule them using the minimum number of rooms. Return the list of meetings in every room. 
 	public int maxMeetings(List<Interval> intervals) {
-		
+		// http://www.careercup.com/question?id=5142448749674496
+		// https://hellosmallworld123.wordpress.com/2014/05/30/arranging-the-meeting-room/
 		
 		return 0;
 	}
