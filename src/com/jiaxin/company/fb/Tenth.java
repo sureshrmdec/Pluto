@@ -14,5 +14,13 @@ package com.jiaxin.company.fb;
  * 
  */
 public class Tenth {
-
+	
+	// 1. Compute the minimum leaf node depth in a binary tree. (Ninja)
+	
+	
+	// 2. trap water
+	
+	// 3. Reverse a singly linked list in place (Ninja)
+	
+	// 4. Simple Regex
 }

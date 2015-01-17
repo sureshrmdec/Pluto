@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
 
-
 /*
  * Phone: 
  * 1. Find 2 elements with a given sum
@@ -221,6 +220,41 @@ public class Third {
 		return true;
 	}
 	
+	// 6. balance parans (Ninja)
+	// 7. Phone book, number matching with wildcards (Ninja)
+	// 8. Git Bisect
+	public static int findBadVersion(int n) {
+		int start = 1;
+		int end = n;
+		
+		while (start + 1 < end) {
+			int mid = start + (end - start) / 2;
+			
+			if (!isBadVersion(mid - 1) && isBadVersion(mid)) {
+				return mid;
+			} 
+			
+			if (isBadVersion(mid - 1)) {
+				end = mid;
+			} else {
+				start = mid;
+			}
+		}
+		
+		if (!isBadVersion(start - 1) && isBadVersion(start)) {
+			return start;
+		}
+		
+		if (!isBadVersion(end - 1) && isBadVersion(end)) {
+			return end;
+		}
+		
+		return -1;
+	}
+	
+	public static boolean isBadVersion(int version) {
+		return version >= 9? true: false;
+	}
 	
 	// 9. Given an array of numbers, you can jump ahead by a[i] or go one step ahead. Minimum steps from start of array to end.
 	public int jump(int[] A) {
@@ -241,6 +275,10 @@ public class Third {
 		}
 		
 		return step[A.length - 1];
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(findBadVersion(10));
 	}
 	
 
