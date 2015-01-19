@@ -11,7 +11,7 @@ import java.util.Queue;
  * 
  * Onsite: 
  * 1. Print Tree By Levels (Ninja) 
- * 2. Pick a random element from linkedlist (Ninja)
+ * 2. Pick a random element from linkedlist (Ninja)  -- reservoir sampling 
  * 3. Roman to Integer (Ninja)
  * 4. Live likes/moments for the android app (Pirate)
  * 5. Look and say (Ninja)
@@ -56,11 +56,30 @@ public class First {
 	}
 	
 	// 2. Pick a random element from linkedlist (Ninja)
-	public ListNode randomSelect(ListNode head) {
+	// http://stackoverflow.com/questions/9401375/how-would-you-pick-a-uniform-random-element-in-linked-list-with-unknown-length
+	// http://hi.baidu.com/cpuramdisk/item/260611ca0082bcd796445239
+	// http://www.cnblogs.com/fartherfuture/p/3495899.html
+	// work on memory limit or stream data. make sure equal probability when we don't know sample size  
+	
+	public static ListNode randomSelect(ListNode head) {
+		if (head == null) {
+			return null;
+		}
 		
+		ListNode candidate = head;
+		int n = 1;
 		
+		while (head.next != null) {
+			double probability = Math.random();
+			if (probability < (double)1 / (n + 1)) {
+				candidate = head.next;
+			}
+			
+			head = head.next;
+			n++;
+		}
 		
-		return null;
+		return candidate;
 	}
 	
 	// 3. Roman to Integer
@@ -130,10 +149,28 @@ public class First {
 		return oldString;
 	}
 	
-	// 6. Inplace_merge (Ninja)  -- work on it.
+	// 6. Inplace_merge (Ninja)  -- aux sort, subroutine 
+	// http://algs4.cs.princeton.edu/22mergesort/
+	public int[] inplaceMergeSort(int[] A) {
+		if (A == null) {
+			return null;
+		}
+		
+		
+		
+		
+		
+		return A;
+	}
 	
 	
 	
+	
+	public static void main(String[] args) {
+
+		
+		
+	}
 	
 	class ListNode {
 		int val;

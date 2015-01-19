@@ -2,7 +2,6 @@ package com.jiaxin.lc.newProblem;
 
 
 public class IntersectionOfTwoList {
-	
 	public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
 		if (headA == null || headB == null) {
 			return null;
@@ -46,7 +45,7 @@ public class IntersectionOfTwoList {
 	}
 
 
-	static class ListNode {
+	class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) {

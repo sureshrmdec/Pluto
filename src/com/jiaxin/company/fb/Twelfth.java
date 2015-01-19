@@ -14,13 +14,13 @@ import java.util.Set;
  * 1. You are given a string with no space and a set of valid words. Segment the string such that all the segments 
  * are contained in the set of valid words.
  * 2. Look and say
- * 3. connected components ??
+ * 3. connected components problem - metapage clustering 
  * 
  * Onsite:
  * 1. Print tree by levels (Ninja)
  * 2. Enumerate substrings of a string which are palindromes (Ninja) -- get all substring first?
  * 3. Max Intervals (Jedi)
- * 4. Graph clone
+ * 4. Graph clone (Jedi)
  * 5. Build a language classifier given sentences from two languages (Pirate)
  * 6. Design status update search (Pirate)
  * 
@@ -64,6 +64,7 @@ public class Twelfth {
 
 	/***********************************************************************************************************/
 	// 2. Count and say? Look and say?  If them ask all result, List<String> result = new ArrayList<String>(n); as n--, we need record n first. return result.get(result.size() - 1)
+	// follow up: what's the largest number to be seen in the sequence. -- 3. can't be 4.
 	public static String countAndSay(int n) {
 		String oldString = "1";
 		
@@ -129,6 +130,7 @@ public class Twelfth {
 	
 	/***********************************************************************************************************/
 	// 2. Enumerate substrings of a string which are palindromes (Ninja)
+	// a simple iterative solution which is O(n) best-case and O(n^2) worst-case, whereas dynamic programming is always O(n^2). A
 	public List<List<String>> partition(String s) {
 		List<List<String>> result = new ArrayList<List<String>>();
 		List<String> list = new ArrayList<String>();
@@ -179,9 +181,13 @@ public class Twelfth {
 	}
 
 	
-	
 	/***********************************************************************************************************/
 	// 3. Max Intervals (Jedi) find the interval overlap others more? [0,5] [2,9] [8,10] [6,9] -> [8,10] 
+	// visiting the endpoints in order and counting the nesting level 
+	// [0,5 ] [2,10] [6,9] [8,11]
+	//http://www.careercup.com/question?id=15465824
+	//http://codeanalysis111.blogspot.com/2014/11/facebook-interval-problem.html
+	
 	
 	
 	
@@ -248,7 +254,7 @@ public class Twelfth {
 
 
 	public static void main(String[] args) {
-		System.out.println(countAndSay(8));
+		System.out.println(countAndSay(6));
 	}
 	
 	class UndirectedGraphNode {

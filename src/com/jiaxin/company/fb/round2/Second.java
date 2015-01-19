@@ -18,9 +18,12 @@ import java.util.List;
  * 3. Max non-adjacent subset sum (Ninja)
  * 4. Youtube typeahead (Pirate)
  * 5. Football scores (Ninja)
- * 6. 
  */
 public class Second {
+	// 1. xml parse  - stack, queue? 
+	// 2. print tree by levels 
+	// 3. regex
+	
 	
 	
 	// 1. Find 3 ints that sum to 0 in an array (Jedi)  - Sum
@@ -75,6 +78,8 @@ public class Second {
 	
 	// 2. 
 	
+	
+	// 3. Max non-adjacent subset sum (Ninja) - DP
 	
 	// 5. Football Score
 	public static List<List<Integer>> football(int score) {

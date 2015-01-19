@@ -141,7 +141,8 @@ public class Thirteen {
 	
 	
 	/**********************************************************************************************************/
-	// 5. Dedupe string (Ninja) For dedupe str, he knew he would need a lookup structure, and had good questions on constraints on the characters (ascii, unicode, etc.) Coded quickly well.
+	// 5. Dedupe string (Ninja) For dedupe str, he knew he would need a lookup structure, 
+	// and had good questions on constraints on the characters (ascii, unicode, etc.) Coded quickly well.
 	
 	
 	
@@ -186,7 +187,7 @@ public class Thirteen {
 	
 	
 	/**********************************************************************************************************/
-	// 7. Word break II - ask all solutions.
+	// 7. Word break II - ask all solutions. Actually not, find max partitions in valid results.
 	public static List<String> wordBreak(String s, Set<String> dict) {
 		ArrayList<String> result = new ArrayList<String>();
 		if (s == null || s.length() == 0)

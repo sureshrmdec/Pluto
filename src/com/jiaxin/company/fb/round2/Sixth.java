@@ -14,15 +14,19 @@ import java.util.Stack;
  * Onsite:
  * 1. Phone String (Jedi)
  * 2. cd command (Ninja) 
- * 3. Area under skyline (Ninja)
+ * 3. Area under skyline (Ninja) -- not same as Histogram
  * 4. Greater value in BST (Ninja)
- * 5. Football scores (Ninja)
+ * 5. Football scores (Ninja)  - DP way?
  * 6. design a photo uploader (Pirate) 
  * 
  * 
  */
 public class Sixth {
-	// 1. Phone String (Jedi)
+	// 1. Overlap - sort and compare - nlgn, just force to do it n2
+	// 2. 
+	
+	
+	// 1. Phone String (Jedi) 
 	char[][] map = {{}, {}, {'a','b','c'}, {'d','e','f'}, {'g','h','i'}, {'j','k','l'}, {'m','n','o'}, 
 			{'p','q','r','s'}, {'t','u','v'}, {'w','x','y','z'}};
 	
@@ -54,31 +58,13 @@ public class Sixth {
 		}
 	}
 
+	// 2. cd command -- Simplify Path?
 	
-	// 3. Area under skyline (Ninja) 
-	public int largestRectangleArea(int[] height) {
-		if (height == null || height.length == 0) {
-			return 0;
-		}
-		
-		Stack<Integer> stack = new Stack<Integer>();
-		int max = 0;
-				
-		for (int i = 0; i <= height.length; i++) {
-			int current = (i == height.length) ? -1 : height[i];
-			
-			while (!stack.isEmpty() && current < height[stack.peek()]) {
-				int h = height[stack.pop()];
-				int w = stack.isEmpty() ? i : i - stack.peek() - 1;
-				
-				max = Math.max(max, h * w);
-			}
-			
-			stack.push(i);
-		}
-		
-		return 0;
-	}
+	
+	// 3. Area under skyline (Ninja)
+	// http://www.shadabahmed.com/blog/2013/04/24/skyline-algorithm-a-binary-tree-approach
+	//Given a set of rectangular buildings (X-start, X-end, height), calculate the total area of the skyline
+	// (avoiding double counting overlapping buildings). 
 	
 	// 4. Greater value in BST (Ninja)  3 case to consider. 
 	public TreeNode greaterValueBST(TreeNode node) {

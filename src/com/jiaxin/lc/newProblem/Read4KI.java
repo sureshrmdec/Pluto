@@ -15,23 +15,22 @@ public class Read4KI {
 */
 	public int read(char[] buf, int n) {
 		char[] buffer = new char[4];
-		
+		boolean eof = true;
 		int total = 0;
-		while (total < n) {
+		
+		while (eof && total < n) {
 			int temp = read4(buffer);
-			
-			temp = Math.min(n - total, temp);
-			System.arraycopy(buffer, 0, buf, total, temp);
-			total += temp;
-			
 			if (temp < 4) {
-				break;
+				eof = false;
 			}
+			
+			int bytes = Math.min(n - total, temp);
+			System.arraycopy(buffer, 0, buf, total, bytes);
+			total += bytes;
 		}
 		
 		return total;
 	}
-	
 	
 	// API funciton
 	public int read4(char[] buf) {

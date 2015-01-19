@@ -43,5 +43,6 @@ public class Ninth {
 		throw new IllegalArgumentException("Can found sqrt for " + x);
 	}
 	
+	// try double sqrt
 	
 }

@@ -2,7 +2,9 @@ package com.jiaxin.lc.newProblem;
 
 import java.util.Arrays;
 import java.util.Comparator;
-
+/*
+ * Integer Camparation is complicated, Transfer to string, connect s1+s2 and s2+s1.
+ */
 
 public class LargestNumber {
 	// For example, given [3, 30, 34, 5, 9], the largest formed number is 9534330.

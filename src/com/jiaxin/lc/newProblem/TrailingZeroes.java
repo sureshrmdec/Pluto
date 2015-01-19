@@ -1,11 +1,11 @@
 package com.jiaxin.lc.newProblem;
 
 /*
- * 
  * Trailing zeros of n!
  * 
- * Interger OverFlow
- * Reference: http://www.purplemath.com/modules/factzero.htm
+ * take care Integer OverFlow
+ * Reference: 
+ * http://www.purplemath.com/modules/factzero.htm
  * http://www.cnblogs.com/EdwardLiu/p/4207498.html
  */
 public class TrailingZeroes {
@@ -26,6 +26,5 @@ public class TrailingZeroes {
 	
 	public static void main(String[] args) {
 		System.out.println(trailingZeroes(1808548329));
-		
 	}
 }

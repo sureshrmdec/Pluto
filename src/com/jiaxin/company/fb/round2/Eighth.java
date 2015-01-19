@@ -9,7 +9,7 @@ import java.util.List;
  * 2. Compute x^n give a double x and an integer n. 
  */
 
-public class Seventh {
+public class Eighth {
 	// 1. Football Scores  -- same to money change 1, 5, 10, 25. 2 sub question -- how many ways? how many combination?
 	// 1 2 3 6 (touch down)
 	static int[] A = {1, 2, 3, 6};

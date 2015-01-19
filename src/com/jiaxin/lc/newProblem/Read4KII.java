@@ -1,44 +1,39 @@
 package com.jiaxin.lc.newProblem;
 
 
-/* The read function may be called multiple times.
+/* 
+ * The read function may be called multiple times.
  * The previous one we can't use it for multiple times since read4 actually read more and break continuity.
- * This one will sovle that problem.
- * 
+ * This one will sovle that problem. read the buffer used last time.(through offset)
  */
 
-/* public class Solution extends Reader4 { */
 public class Read4KII {
-	int offset = 0;
-	int bufSize = 0;
-	char[] offsetBuffer = new char[4];
+	// reused variable. 
+	private char[] buffer = new char[4];
+	private int bufsize = 0;
+	private int offset = 0;
 	
-	// "abc" read(1) read(4) read(1)- OutofIndex
 	public int read(char[] buf, int n) {
-		char[] buffer = new char[4];
-
 		int total = 0;
-		while (total < n) {
-			if (offset > 0) {
-				System.arraycopy(offsetBuffer, 0, buf, total, Math.min(offset, n));
-				total += offset;
-				offset -= Math.min(offset, n);
+		boolean eof = true;
+		
+		while (eof && total < n) {
+			if (bufsize == 0) {
+				bufsize = read4(buffer);
+				
+				if (bufsize < 4) {
+					eof = false;
+				}
 			}
 			
-			int temp = read4(buffer);
+			int bytes = Math.min(n - total, bufsize);
+			System.arraycopy(buffer, offset, buf, total, bytes);
 			
-			int copyLength = Math.min(n - total, temp);
-			System.arraycopy(buffer, 0, buf, total, copyLength);
-			total += temp;
-
-			offset = temp - copyLength;
-			
-			if (copyLength < 4) {
-				break;
-			}
+			offset = (offset + bytes) % 4;
+			bufsize -= bytes;
+			total += bytes;
 		}
-
-		bufSize += total;
+		
 		return total;
 	}
 	

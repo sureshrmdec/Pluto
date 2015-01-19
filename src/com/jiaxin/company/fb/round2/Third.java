@@ -19,7 +19,6 @@ bonus of the case you are on).
  * 3. Proximity Search (Pirate)
  * 4. Max Rectangle Area Underneath Histogram (Jedi)
  * 5. Find the kth Largest element in 2 sorted array of integers (Ninja)
- * 6.
  * 
  * 
  */
@@ -174,15 +173,41 @@ public class Third {
     
     
     // 5. Find the kth Largest element in 2 sorted array of integers (Ninja)  -- median of two sorted array
+    public static int findKthElement(int[] A, int[] B, int k) {    	
+    		return findKth(A, 0, B, 0, k);
+    }
     
-    
-    
-    
-    
-    
+	private static int findKth(int[] A, int AStart, int[] B, int BStart, int k) {
+		if (AStart >= A.length) {
+			return B[BStart + k - 1];
+		} 
+		
+		if (BStart >= B.length) {
+			return A[AStart + k - 1];
+		}
+		
+		if (k == 1) {
+			return Math.min(A[AStart], B[BStart]);
+		}
+		
+		int AKey = AStart + k/2 - 1 < A.length ? A[AStart + k/2 - 1] : Integer.MAX_VALUE;
+		int BKey = BStart + k/2 - 1 < B.length ? B[BStart + k/2 - 1] : Integer.MAX_VALUE;
+		
+		if (AKey < BKey) {
+			return findKth(A, AStart + k/2, B, BStart, k - k/2);
+		} else {
+			return findKth(A, AStart, B, BStart + k/2, k - k/2);
+		}
+	}
+
 	public static void main(String[] args) {
 		int[] height = {2,1,5,6,2,3};
 		System.out.println(largestRectangleArea(height));
+		
+		int[] A = {1,2,3};
+		int[] B = {4,5,6,7,8,9,10};
+		
+		System.out.println(findKthElement(A, B, 4));
 	}
 	
 	

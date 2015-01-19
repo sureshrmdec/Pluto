@@ -3,8 +3,10 @@ package com.jiaxin.company.fb.round2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Stack;
 
 
@@ -109,34 +111,28 @@ public class Fourth {
 	
 	// 3. Serialize / Deserialize a binary tree
 	public static String serialize(TreeNode root) {
+		Queue<TreeNode> queue = new LinkedList<TreeNode>(); 
+		queue.add(root);
+		
 		StringBuilder sb = new StringBuilder();
 		
-		Stack<TreeNode> stack = new Stack<TreeNode>();
-		
-		while (!stack.isEmpty() || root != null) {
-			while (root != null) {
-				sb.append(root.val + ",");
-				
-				if (root.left == null) {
-					sb.append("#" + ",");
+		while (!queue.isEmpty()) {
+			int size = queue.size();
+			
+			for (int i = 0; i < size; i++) {
+				root = queue.poll();
+				if (root == null) {
+					sb.append("#");
+				} else {
+					sb.append(root.val);
 				}
 				
-				stack.push(root);
-				root = root.left;
-			}
-			
-			if (!stack.isEmpty()) {
-				root = stack.pop();
-				
-				if (root.right == null) {
-					sb.append("#" + ",");
-				} 
-				
-				root = root.right;
+				queue.add(root.left);
+				queue.add(root.right);
 			}
 		}
 		
-		return sb.toString().substring(0, sb.length() - 1);
+		return sb.toString();
 	}
 	
 	
@@ -154,14 +150,13 @@ public class Fourth {
 			return;
 		}
 		
-		
 		sb.append(root.val + ",");
 		serializeHelper(sb, root.left);
 		serializeHelper(sb, root.right);
 	}
 
 	static int i = 0;
-	public static TreeNode deserialize(String str) {
+	public static TreeNode deserializeRecursive(String str) {
 		String[] strs = str.split(",");
 		
 		return deserializeHelper(strs);		
@@ -239,10 +234,10 @@ public class Fourth {
 		node10.left = node50; 
 		node20.left = node45; node20.right = node35;
 		
-		String result = serializeRecursive(node30);
+		String result = serialize(node30);
 		System.out.println("result " + result);
 		
-		TreeNode newRoot = deserialize(result);
+		TreeNode newRoot = deserializeRecursive(result);
 		result = serializeRecursive(newRoot);
 		System.out.println("result " + result);
 		

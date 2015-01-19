@@ -19,10 +19,11 @@ import java.util.PriorityQueue;
  * 3. Merge K Lists (Ninja)
  * 4. Strstr (Ninja)
  * 5. Find all substring that are palindromes. (Ninja)
- * 6. balance parans (Ninja)
- * 7. Phone book, number matching with wildcards (Ninja)
- * 8. Git Bisect 
- * 9. Given an array of numbers, you can jump ahead by a[i] or go one step ahead. Minimum steps from start of array to end. 
+ * 6. balance parentheses (Ninja) stack ? two pointer?
+ * 7. Phone book, number matching with wildcards (Ninja) trie tree?
+ * 8. Git Bisect (Ninja)
+ * 9. Given an array of numbers, you can jump ahead by a[i] or go one step ahead. Minimum steps from start of array to end.(Ninja)
+ * 10. Distribute 1TB of data from 5 machines to 100k. (private) 
  */
 public class Third {
 	// 1. two Sum
