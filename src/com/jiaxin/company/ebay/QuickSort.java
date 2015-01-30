@@ -12,7 +12,6 @@ public class QuickSort {
 		for (int i : nums) {
 			System.out.print(i + ", ");
 		}
-		
 	}
 	
 	public static void quickSort(int[] nums, int start, int end) {

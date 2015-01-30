@@ -2,10 +2,6 @@ package homework;
 
 public class FindBadVersion {	
 	public int findBadVersion(int n) {
-		if (n == 1) {
-			return 1; 
-		}
-		
 		int start, end, mid;
 		start = 2;
 		end = n;
