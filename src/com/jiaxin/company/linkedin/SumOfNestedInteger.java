@@ -4,6 +4,7 @@ import java.util.List;
 
 public class SumOfNestedInteger {
 	public int depthSum (List<NestedInteger> input) {
+		return 0;
 	     //Implement this function
 	}
 
