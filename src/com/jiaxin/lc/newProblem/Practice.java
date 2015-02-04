@@ -2,14 +2,6 @@ package com.jiaxin.lc.newProblem;
 
 public class Practice {
 
-	public void test() {
-		String s = "a";
-		switch(s) {
-			case "a" :
-			break;
-		}
-		
-	}
 	public int spreasheet(int nRows, int nCols, String... exprArray) {
 		String s = exprArray[0];
 		
