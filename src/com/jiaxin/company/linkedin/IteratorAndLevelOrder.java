@@ -1,6 +1,8 @@
 package com.jiaxin.company.linkedin;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -90,6 +92,22 @@ public class IteratorAndLevelOrder {
 		return Math.max(left, right) + 1;
 	}
 
+	private void helper(List<List<Integer>> res, TreeNode root, int level) {
+		if (root == null)
+			return;
+		if (res.size() - 1 < level)
+			res.add(new ArrayList<Integer>());
+		res.get(level).add(root.val);
+		helper(res, root.left, level + 1);
+		helper(res, root.right, level + 1);
+	}
+
+	public List<List<Integer>> levelOrderDFS2(TreeNode root) {
+		List<List<Integer>> res = new ArrayList<List<Integer>>();
+		helper(res, root, 0);
+		return res;
+	}
+	
 
 	/******************************************************************************/
 	public class BSTIterator {
@@ -129,6 +147,7 @@ public class IteratorAndLevelOrder {
 		node2.left = node9; node4.right = node8;
 		
 		levelOrderDFS(node1);
+		System.out.println(levelOrderDFS2(node1));
 	}
 	
 	
