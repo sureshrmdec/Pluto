@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 
+ * @author jiashan
+ *
+ * K-Sum (Recursive + split 2 groups way)
+ * 
+ * http://tech-wonderland.net/blog/k-sum-problem-analysis-recursive-implementation-lower-bound.html
+ * http://cs.stackexchange.com/questions/2973/generalised-3sum-k-sum-problem
+ * 
+ */
 public class FourSum {
 	public List<List<Integer>> fourSum(int[] num, int target) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();

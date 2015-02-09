@@ -26,4 +26,7 @@ public class DecodeWays {
 		
 		return num[s.length()];
     }
+	
+	// Recursive http://stackoverflow.com/questions/20342462/review-an-answer-decode-ways
+	// https://gist.github.com/janehwzn/5937872
 }

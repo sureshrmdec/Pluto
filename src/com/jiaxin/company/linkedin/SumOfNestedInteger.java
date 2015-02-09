@@ -55,8 +55,8 @@ public class SumOfNestedInteger {
 	
 	@Test
 	public void test() {
-		List<NestedInteger> list1 = new ArrayList<>(); 
-		List<NestedInteger> list2 = new ArrayList<>(); 
+		List<NestedInteger> list1 = new ArrayList<NestedInteger>(); 
+		List<NestedInteger> list2 = new ArrayList<NestedInteger>(); 
 
 		NestedInteger nestedInteger1 = new MyNestedIneteger2(1, null); 
 		NestedInteger nestedInteger2 = new MyNestedIneteger2(null, list1); 
@@ -68,7 +68,7 @@ public class SumOfNestedInteger {
 		list1.add(nestedInteger4);
 		list2.add(nestedInteger5);
 		
-		List<NestedInteger> input = new ArrayList<>(); 
+		List<NestedInteger> input = new ArrayList<NestedInteger>(); 
 		input.add(nestedInteger1); 
 		input.add(nestedInteger2);
 

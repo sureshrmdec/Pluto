@@ -90,7 +90,7 @@ public class Triangle {
 		return result;
 	}
 	
-	// find total number
+	// find total number -- no duplicates
 	public int trianglePossibile(int[] nums) {
 		int result = 0;
 		Arrays.sort(nums);

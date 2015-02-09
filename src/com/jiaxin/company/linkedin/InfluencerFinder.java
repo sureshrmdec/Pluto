@@ -50,6 +50,17 @@ public class InfluencerFinder {
 		return -1;
 	}
 	
+	/**
+	 * m = 
+	 [0, 1, 1, 0],
+     [1, 0, 1, 1],
+     [0, 0, 0, 0],
+     [1, 1, 1, 0]   find candidate = 2. [i][j] = false [j][i] = true
+     
+	 * @param followingMatrix
+	 * @return
+	 */
+	
 	// O(n) --> need to say there's only one if exists
 	public int getInfluencer(boolean[][] followingMatrix) {
 		int candidate = 0;

@@ -3,6 +3,7 @@ package com.jiaxin.company.linkedin;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CanIWin {
@@ -56,6 +57,10 @@ public class CanIWin {
 			return false;
 		}
 		
+//		if (candidates.get(candidates.size() - 1) >= target) {
+//			return true;
+//		}
+		
 		for (int i = 0; i < candidates.size(); i++) {
 			int removed = candidates.remove(i);
 			if (!helper(candidates, target - removed)) {
@@ -80,7 +85,9 @@ public class CanIWin {
 	
 	@Test
 	public void test() throws Exception {
-		System.out.println(canIWin(3, 4));
+//		Assert.assertEquals(false, canIWin(3, 4));
+		Assert.assertEquals(true, canIWin(3, 5));
+		Assert.assertEquals(true, canIWin(5, 12));
 	}
 	
 }
