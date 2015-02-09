@@ -16,9 +16,18 @@ import org.junit.Test;
  * words), can you optimize your solution?
  * 
  */
-public class ShortestDistance {
+public class WordDistance {
+	/* This class will be given a list of words (such as might be tokenized
+	 * from a paragraph of text), and will provide a method that takes two
+	 * words and returns the shortest distance (in words) between those two
+	 * words in the provided text. 
+	 * Example:
+	 *   WordDistanceFinder finder = new WordDistanceFinder(Arrays.asList("the", "quick", "brown", "fox", "quick"));
+	 *   assert(finder.distance("fox","the") == 3);
+	 *   assert(finder.distance("quick", "fox") == 1);
+	 */
 	
-	// call one time 
+	// call one time  -> O(n) Time, O(1) Space
 	public int shortestDistance(String[] words, String s, String t) {
 		if (words == null || s == null || t == null) {
 			return 0;
@@ -47,6 +56,8 @@ public class ShortestDistance {
 		return min;
 	}
 	
+	
+	/**************************************************************************************/
 	// call for multiple time -- preprocess
 	public int shortestDistanceMap(String[] words, String s, String t) {
 		Map<String, List<Integer>> dict = new HashMap<String, List<Integer>>();
@@ -58,9 +69,29 @@ public class ShortestDistance {
 			dict.get(words[i]).add(i);
 		}
 		
+		/*
 		List<String> mergeList = merge(dict.get(s), dict.get(t));
 		
 		return findmin(mergeList);
+		*/
+		
+		List<Integer> list1 = dict.get(s);
+		List<Integer> list2 = dict.get(t);
+		
+		int i = 0, j = 0;
+		int result = Integer.MAX_VALUE;
+		
+		while (i < list1.size() && j < list2.size()) {
+			if (list1.get(i) <= list2.get(j)) {
+				result = Math.min(result, list2.get(j) - list1.get(i));
+				i++;
+			} else {
+				result = Math.min(result, list1.get(i) - list2.get(j));
+				j++;
+			}
+		}
+		
+		return result;
 	}
 
 	private int findmin(List<String> mergeList) {
@@ -109,14 +140,42 @@ public class ShortestDistance {
 		
 		return mergeList;
 	}
+
+	// You have two arrays of integers, where the integers do not repeat and the two arrays have no common integers. 
+	// Let x be any integer in the first array, y any integer in the second. Find min(Abs(x-y)). That is, find the 
+	// smallest difference between any of the integers in the two arrays. 
+	// Assumptions: Assume both arrays are sorted in ascending order.
+	
+	public int minTwoArray(int[] A, int[] B) {
+		int i = 0;
+		int j = 0;
+		int result = Integer.MAX_VALUE;
+		
+		while (i < A.length && j < B.length) {
+			if (A[i] <= B[j]) {
+				result = Math.min(result, B[j] - A[i]);
+				i++;
+			} else {
+				result = Math.min(result, A[i] - B[j]);
+				j++;
+			}
+		}
+		return result;
+	}
+	
+	
 	
 	@Test
 	public void test() {
-		String s = "We will assume for this question that it doesn't matter whether wordl or word2 appears"
-				+ "first. This is a question you should ask your interviewer. If the word order does matter, we"
+		String s = "We will assume for this question that We doesn't interviewer whether wordl or interviewer appears"
+				+ "first. This is a question We should ask your interviewer. If the word order does matter, We"
 				+ "can make the small modification shown in the code below";
 		
 		String[] words = s.split(" ");
-		System.out.println(shortestDistance(words, "We", "assume"));
+		System.out.println(shortestDistanceMap(words, "We", "interviewer"));
+		
+		int[] A = {1,5,6};
+		int[] B = {3,4,18,30};
+		System.out.println(minTwoArray(A, B));
 	}
 }
