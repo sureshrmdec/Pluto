@@ -97,6 +97,13 @@ public class Intervals {
 		}
 	}; 
 	
+	// given a DNA sequence find pattern;
+	// given intervals find overlap and return the length;
+	// find coverage of a bunch of intervals
+	// tree serialization
+	
+	
+	
 	@Test
 	public void test() {
 		Interval interval1 = new Interval(1,3);

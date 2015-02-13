@@ -52,6 +52,8 @@ public class SymmetricTree {
 		return root;
 	}
 	
+	// clone a tree for mirror
+	
 	
 	public void levelOrder(TreeNode root) {
 		if (root == null) {

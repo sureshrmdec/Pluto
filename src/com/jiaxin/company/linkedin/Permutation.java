@@ -94,6 +94,8 @@ public class Permutation {
 	}
 	
 	
+	//http://www.glassdoor.com/Interview/LinkedIn-Software-Engineer-Interview-Questions-EI_IE34865.0,8_KO9,26.htm#InterviewReview_5424743
+	
 	@Test
 	public void test() {
 		List<Integer> items = new ArrayList<Integer>();

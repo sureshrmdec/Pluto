@@ -22,6 +22,8 @@ public class MeetQun {
  * 
  * Phone:http://www.meetqun.com/thread-3561-1-23.html
  * 1. cache. addEntry, request, remove expired. Multithread, need to set expired time of entry.
+ * http://questzen.blogspot.com/2011/04/java-hashmap-with-expiration-policy.html
+ * 
  * 
  * Phone:http://www.meetqun.com/thread-5249-1-23.html
  * 1. K nearest neighbour

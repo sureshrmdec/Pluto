@@ -7,7 +7,6 @@ public class Pointacres {
 	
 	//http://www.1point3acres.com/bbs/thread-105717-1-1.html
 	
-	// write singleton class 
 	
 	
 	// https://gist.github.com/gaoyike/40df1e0ec5a6c95e0014 // https://gist.github.com/gaoyike/26f738493ad5b72a4a77
@@ -47,9 +46,5 @@ public class Pointacres {
    
    // tree hard http://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=106498&extra=page%3D1%26filter%3Dsortid%26sortid%3D311%26searchoption%5B3046%5D%5Bvalue%5D%5B6%5D%3D6%26searchoption%5B3046%5D%5Btype%5D%3Dcheckbox%26sortid%3D311
 
-	// sorted array intersection
 	
-	// reflection of tree
-	
-	// 2. 给一个DNA序列，AAGTACCGTACCTG……这种，alphabetically输出其中所有重复出现的长度为10的序列，要求constant memory，不能用hashmap.
 }
