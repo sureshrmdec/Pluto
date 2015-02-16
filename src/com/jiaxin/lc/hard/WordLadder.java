@@ -2,11 +2,14 @@ package com.jiaxin.lc.hard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+
+import org.junit.Test;
 
 public class WordLadder {
 	// BFS
@@ -18,7 +21,7 @@ public class WordLadder {
 		Queue<String> queue = new LinkedList<String>();
 		queue.offer(start);
 		dict.remove(start);
-		int level = 0;
+		int level = 1;
 		
 		while (!queue.isEmpty()) {
 			int size = queue.size();
@@ -27,24 +30,21 @@ public class WordLadder {
 				String word = queue.poll();
 				
 				for (int j = 0; j < word.length(); j++) {
-					for (char c = 'a'; c < 'z'; c++) {
-						if (word.charAt(j) == c) {
-							continue;
-						}
+					for (char c = 'a'; c <= 'z'; c++) {
+						String newWord = replaceChar(word, j, c);
 						
-						String temp = replaceChar(start, j, c);
-						
-						if (temp.equals(end)) {
+						if (newWord.equals(end)) {
 							return level + 1;
 						}
 						
-						if (dict.contains(temp)) {
-							queue.offer(temp);
-							dict.remove(temp);
+						if (dict.contains(newWord)) {
+							queue.offer(newWord);
+							dict.remove(newWord);
 						}
 					}
 				}
 			}
+			
 			level++;
 		}
 		
@@ -58,29 +58,11 @@ public class WordLadder {
 		return new String(array);
 	}
 	
-	
-	/*******************************************************************************************************************/
-	public List<List<String>> findLadders(String start, String end, Set<String> dict) {
-		List<List<String>> result = new ArrayList<List<String>>();
-//		List<String> path = 
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		
-		Map<String, Integer> distance = new HashMap<String, Integer>();
-		
-		bfs(map, distance, start, end, dict);
-		
-		
-		
-		return null;
+	@Test
+	public void test() {
+		Set<String> dict = new HashSet<String>();
+		dict.add("hot"); dict.add("dog"); dict.add("dot");
+		System.out.println(ladderLength("hot", "dog", dict));
 	}
-
-	private void bfs(Map<String, List<String>> map, Map<String, Integer> distance, 
-			String start, String end, Set<String> dict) {
-		
-		
-	}
-	
-	
-	
 	
 }

@@ -53,6 +53,43 @@ public class BinarySearchRotatedAndRange {
 		return array[(start + 1) % array.length];
 	}
 	
+	/**
+	 * 
+	 * Find a given element in sorted array. 
+	 * array = [1, 2, 3, 4, 5, 6] 
+	 * 
+	 * follow up: If the sorted array is shifted left by unknown number, modify existing binary search to find a element in modified array 
+	 * array = [4, 5, 6, 1, 2, 3]
+	 * 
+	 */
+	public int findPivot(int[] A) {
+		if (A == null || A.length == 0) {
+			return -1;
+		}
+		
+		int start = 0;
+		int end = A.length - 1;
+		
+		while (start + 1 < end) {
+			int mid = start + (end - start) / 2;
+			
+			if (A[start] <= A[mid]) {
+				
+			} else {
+				
+			}
+			
+		}
+		
+		
+		
+		
+		return -1;
+	}
+	
+	
+	
+	
 	@Test
 	public void test() {
 		char[] array = {'c', 'f', 'j', 'p', 'v'};

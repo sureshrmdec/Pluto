@@ -53,7 +53,15 @@ public class Practice {
 			result = result.next;
 		}
 	}
+
+	public void reverse(ListNode head) {
+	    if (head == null) {
+	    	return;
+	    }
 	
+	    reverse(head.next);
+	    System.out.print(head.val + "->");
+	}
 	
 	class RandomListNode {
 		int label;
