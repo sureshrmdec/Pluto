@@ -3,10 +3,19 @@ package com.jiaxin.company.fb.online;
 import org.junit.Test;
 
 
-//https://gist.github.com/bittib/5620951
+/**
+ * 
+ * https://gist.github.com/bittib/5620951
+ * 
+ * 1. Recursive 
+ * 2. BFS  -> save memory
+ * 
+ * @author jiashan
+ *
+ */
 public class TreeSerialization {
-
-	 public String serialize(TreeNode root) {
+	// Preorder Serilization | Recrusive
+	public String serialize(TreeNode root) {
         StringBuilder sb = new StringBuilder();
 		
 		serializeHelper(sb, root);
@@ -25,13 +34,7 @@ public class TreeSerialization {
 		serializeHelper(sb, root.right);
 	}
     
-    /**
-     * This method will be invoked second, the argument data is what exactly
-     * you serialized at method "serialize", that means the data is not given by
-     * system, it's given by your own serialize method. So the format of data is
-     * designed by yourself, and deserialize it here as you serialize it in 
-     * "serialize" method.
-     */
+    
     int i = 0;
     public TreeNode deserialize(String data) {
         String[] strs = data.split(",");
@@ -55,6 +58,26 @@ public class TreeSerialization {
 		
 		return node;
 	}
+    
+    
+    /************************************************************************************/
+    public String serializeBFS(TreeNode root) {
+		if (root == null) {
+			return "";
+		}
+		
+		
+    	
+    	return null;
+    }
+    
+    
+    public TreeNode deserializeBFS(String data) {
+        String[] strs = data.split(",");
+		
+		return deserializeHelper(strs);		
+    }
+    
     
     
     /**

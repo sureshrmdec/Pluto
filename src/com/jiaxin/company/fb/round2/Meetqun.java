@@ -85,6 +85,9 @@ public class Meetqun {
 	    return sum;
 	}
 	
+	// 
+	
+	
 	@Test
 	public void test() {
 //		int[] nums = {10, 3, 5, 6, 2};

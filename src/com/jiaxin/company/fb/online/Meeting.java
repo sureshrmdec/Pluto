@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
+import java.util.PriorityQueue;
 
 import org.junit.Test;
 
@@ -13,9 +13,9 @@ import org.junit.Test;
  * Determine if a single person can attend all the meetings
  * Input array(pair(1,4), pair(4, 5), pair(3,4), pair(2,3)) => false
  * 
- * 2. most meetings he can attend
+ * 2. determine the minimum number of meeting rooms needed to hold all the meetings.
  * 
- * 3. determine the minimum number of meeting rooms needed to hold all the meetings.
+ * 3. most meetings he can attend
  * 
  * https://gist.github.com/shadabahmed/5123498
  * http://www.cs.rit.edu/~zjb/courses/800/lec8.pdf
@@ -26,11 +26,13 @@ import org.junit.Test;
  *
  */
 public class Meeting {
-	// can't have any overlapping
+	// if there's overlapping?
 	public boolean attendMettings(Interval[] pairs) {
 		if (pairs == null || pairs.length == 0) {
 			return true;
 		}
+		
+		Arrays.sort(pairs, IntervalComparator);
 		
 		Interval last = pairs[0];
 		for (int i = 1; i < pairs.length; i++) {
@@ -45,7 +47,7 @@ public class Meeting {
 		return true;		
 	}
 	
-	// how to many x, y to x??
+	// max overlapping problem
 	public int miniRoom(Interval[] pairs) {
 		if (pairs == null || pairs.length == 0) {
 			return 0;
@@ -57,7 +59,7 @@ public class Meeting {
 		int room = 1;
 		
 		Interval meeting = pairs[0];
-		endTimes.add(meeting.end);
+		endTimes.add(meeting.end);  // all the meetings not finished
 		
 		for (int i = 1; i < pairs.length; i++) {
 			Interval current = pairs[i];
@@ -66,8 +68,8 @@ public class Meeting {
 			for (int j = 0; j < endTimes.size(); j++) {
 				if (current.start >= endTimes.get(j)) {
 					flag = true; 
-					endTimes.remove(j);
-					endTimes.add(current.end);
+					endTimes.remove(j);             // not useful, meeting all ready ends
+					endTimes.add(current.end);      // new times
 					break;
 				}
 			}
@@ -80,6 +82,28 @@ public class Meeting {
 		
 		return room;
 	}
+	
+	// max overlapping problem - Heap
+	public int miniRoomHeap(Interval[] pairs) {
+		PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+		Arrays.sort(pairs, IntervalComparator);
+		
+		heap.add(pairs[0].end);
+		
+		for (int i = 1; i < pairs.length; i++) {
+			Interval current = pairs[i];
+			
+			if (heap.peek() <= current.start) {
+				heap.poll();
+			}
+			
+			heap.offer(current.end);
+		}
+		
+		return heap.size();
+	}
+	
+	
 	
 	public Comparator<Interval> IntervalComparator = new Comparator<Interval>() {
 		@Override
@@ -100,6 +124,7 @@ public class Meeting {
 		
 		System.out.println(attendMettings(pairs));
 		System.out.println(miniRoom(pairs));
+		System.out.println(miniRoomHeap(pairs));
 	}
 	
 	

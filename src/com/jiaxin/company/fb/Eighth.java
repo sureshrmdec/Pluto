@@ -26,7 +26,7 @@ machines needed. (Pirate)
 public class Eighth {
 	
 	/**************************************************************************/
-	// 1.Powerset -- same as combination, 2^n
+	// 1.Powerset -- same as combination, 2^n  -- Recursive
 	public List<List<Integer>> combination(int[] A) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		List<Integer> list = new ArrayList<Integer>();
@@ -50,6 +50,30 @@ public class Eighth {
 			list.remove(list.size() - 1);
 		}
 	}
+	
+	// Iteration
+	public List<List<Integer>> subSetIteration(int[] A) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		
+		if (A == null || A.length == 0) {
+			return result;
+		}
+		
+		result.add(new ArrayList<Integer>());
+		
+		for (int i = 0; i < A.length; i++) {
+			int size = result.size(); 
+			
+			for (int j = 0; j < A.length; j++) {
+				List<Integer> list = new ArrayList<Integer>(result.get(j)); 
+				list.add(A[i]);
+				result.add(list);
+			}
+		}
+		
+		return result;
+	}
+	
 
 	/**************************************************************************/
 	// 2. Phone number words-- Test case [""] -> [""] but not [], digits.length == 0 can't add into first parameter validation

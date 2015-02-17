@@ -1,7 +1,6 @@
 package com.jiaxin.company.linkedin;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,12 +19,7 @@ public class Permutation {
 	* question:
 	* 1. sorted? 
 	* 2. duplicate ?
-	* 
-	* 
-	* Next Permutation -- iterator?
-	* 一面两个题很简单，找距离最近的n个点和一个排好序的数组找比给定数大的第一个数，水过了
-二面面完就感觉没戏了。第一题出了个2sum，我说做过，第二题是个permutation，写完了我以为下边follow up应该是考虑重复数字吧，但扯了半天next permutation，说如果要找next permutation的话用什么signature,后来搞了半天直到他写出了next(), hasnext(), 才知道他的意思是用iterator。。。
-后来出了个textfile implement iterator的题之前在版上见过这题，想先把file 读一遍放list里然后用iterator，但说不行，必须一行一行的读，对iterator也不熟，写的code跟屎一样，当攒人品了吧。
+	* 3. next permutation? 
 	*/ 	
 	
 	public List<List<Integer>> permutation(List<Integer> items) {
@@ -95,13 +89,88 @@ public class Permutation {
 	
 	
 	//http://www.glassdoor.com/Interview/LinkedIn-Software-Engineer-Interview-Questions-EI_IE34865.0,8_KO9,26.htm#InterviewReview_5424743
+	/**
+	 * 2,3,6,5,4,1
+	 * 1. right to left -> 3
+	 * 2. right to left -> 4
+	 * 3. swap 3, 4 -> 2 4 (6 5 3 1)
+	 * 4. reverse part in brace -> 2 4 1 3 5 6
+	 * 
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public List<List<Integer>> permutation(int[] num) {
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		
+		if (num == null || num.length == 0) {
+			return result;
+		}
+		
+		// don't change original array
+		int[] last = new int[num.length];
+		System.arraycopy(num, 0, last, 0, num.length);
+		
+		// calculate n!
+		int length = 1;
+		for (int i = 1; i < num.length; i++) {
+			length *= num[i];
+		}
+		
+		
+		for (int k = 0; k < length; k++) {
+			int i = last.length - 2;
+			
+			while (i >= 0 && last[i] >= last[i + 1]) {
+				i--;
+			}
+			
+			if (i >= 0) {
+				int j = i + 1;
+				
+				while (j < last.length && last[j] > last[i]) {
+					j++;
+				}
+				j--;
+				
+				int temp = last[i];
+				last[i] = last[j];
+				last[j]= temp;
+			}
+			
+			List<Integer> list = reverse(last, i + 1);
+			result.add(list);
+		}
+		
+		return result;		
+	}
 	
+	
+	private List<Integer> reverse(int[] last, int start) {
+		int end = last.length - 1;
+		while (start < end) {
+			int temp = last[start];
+			last[start] = last[end];
+			last[end] = temp;
+			start++;
+			end--;
+		}
+		
+		List<Integer> list = new ArrayList<Integer>();
+		for (int number : last) {
+			list.add(number);
+		}
+		
+		return list;
+	}
+
 	@Test
 	public void test() {
 		List<Integer> items = new ArrayList<Integer>();
 		items.add(1);items.add(2);items.add(3);
 		
 		System.out.println(permutation(items));
+		System.out.println(permutation(new int[] {1,2,3}));
 	}
 	
 }

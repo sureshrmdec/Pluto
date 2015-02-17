@@ -4,30 +4,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
-// http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
+ 
+
+/**
+ * 1. How many solutions. - Recursive | Iterative
+ * 2. All solutions(steps)
+ * 
+ * http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
+ * @author jiashan
+ *
+ */
 public class Climbstairs {
-	// how many solutions/
+	// DP + memory
 	int[] sum;
     public int climbStairs(int n) {
-        this.sum = new int[n];
+        if (n <= 0) {
+        	return 0;
+        }
+    	
+    	this.sum = new int[n + 1];
 		
-		for (int i = 0; i < sum.length; i++) {
-			sum[i] = Integer.MIN_VALUE;
-		}
-		
-		return search(n - 1);
+		return search(n);
     }
     
     private int search(int i) {
-		if (i == 0) {
+		if (i == 1) {
 			return 1;
 		}
 		
-		if (i == 1) {
+		if (i == 2) {
 			return 2; 
 		}
 		
-		if (sum[i] != Integer.MIN_VALUE) {
+		if (sum[i] != 0) {
 			return sum[i];
 		}
 		
@@ -35,7 +44,7 @@ public class Climbstairs {
 		return sum[i];
 	}
     
-    // claim stair - O(n) + O(1)
+    // claim stair - O(n) + O(1) space. Better than recursive
     public int climbStairsIterative(int n) {
     	int first = 1;
 		int second = 2;
@@ -91,10 +100,10 @@ public class Climbstairs {
     
 	@Test
 	public void test() {
-		
 		System.out.println(climbStairs(10));
-		System.out.println(climbStairsSolutions(10).size());
 		System.out.println(climbStairsIterative(10));
+		System.out.println(climbStairsSolutions(10).size());
+		System.out.println(climbStairsSolutions(10));
 	}
     
 }
