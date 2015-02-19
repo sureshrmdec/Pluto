@@ -3,6 +3,8 @@ package com.jiaxin.company.fb;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 
 /*
  * Phone:
@@ -57,7 +59,68 @@ public class Fifth {
 		return -1;
 	}
 	
-	 // 2. Count number of unique characters 
+	// double sqrt
+	public double sqrt(double x) {
+		if (x <= 0) {
+			throw new IllegalArgumentException();
+		}
+		
+		double start = 0;
+		double end = x/2 + 1;
+		double precision = 0.01;
+		
+		while (start < end) {
+			double mid = start + (end - start) / 2;
+			
+			if (Math.abs(mid - x / mid) < precision) {
+				return mid;
+			}
+			
+			if (mid < x / mid) {
+				start = mid;
+			} else {
+				end = mid;
+			}
+		}
+		
+		if (Math.abs(start - x / start) < precision) {
+			return start;
+		}
+		
+		if (Math.abs(end - x / end) < precision) {
+			return end;
+		}
+		
+		return -1;
+	}
+	
+	/**
+	 * 2. Count number of unique characters
+	 * 
+	 * Hashset -> set.size();
+	 * int[256] if ASCII. set Integer.MAX_VALUE -> find value != Integer.MAX_VALUE. or != 0
+	 * 
+	 */
+	
+	// 3. flattern binary tree to linked list.
+	//http://www.programcreek.com/2013/01/leetcode-flatten-binary-tree-to-linked-list/ Iteration
+	TreeNode lastNode = null;
+	public void flatten(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		
+		if (lastNode != null) {
+			lastNode.right = root;
+			lastNode.left = null;
+		}
+		
+		lastNode = root;
+		TreeNode right = root.right;
+		flatten(root.left);
+		flatten(right);
+	}
+	
 	
 	 // 4. Interval insertion
 	public List<Interval> insert(List<Interval> intervals, Interval newInterval) {
@@ -68,7 +131,7 @@ public class Fifth {
 		
 		int position = 0;
 		for (Interval interval : intervals) {
-			if (interval.end > newInterval.start) {
+			if (interval.end < newInterval.start) {
 				result.add(interval);
 				position++;
 			} else if (interval.start > newInterval.end) {
@@ -82,6 +145,13 @@ public class Fifth {
 		result.add(position, newInterval);
 		return result;
     }
+	
+	@Test
+	public void test() {
+		System.out.println(sqrt(0.04));
+		System.out.println(sqrt(1.44));
+		System.out.println(sqrt(9.0));
+	}
 	
 	class Interval {
 		 int start;

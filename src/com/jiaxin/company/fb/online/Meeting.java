@@ -21,6 +21,8 @@ import org.junit.Test;
  * 4. a list of segment. find the one segment with others most
  * [1,3] [2,4] [7,8] [4,5]  return [2,4]. because [1,3] intersect with [4,5] 
  * O(n^2) or use dict to record
+ * http://stackoverflow.com/questions/21966886/given-a-set-of-intervals-find-the-interval-which-has-the-maximum-number-of-inte/22017949#22017949
+ * 
  * 
  * https://gist.github.com/shadabahmed/5123498
  * http://www.cs.rit.edu/~zjb/courses/800/lec8.pdf

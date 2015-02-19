@@ -3,9 +3,14 @@ package com.jiaxin.company.fb.online;
 import org.junit.Test;
 
 /**
+ * 
+ * Solution: increase sum to target, and then move leftBound
+ * 
+ * detail:
  * start < i     could moved to only one element left. 
  * start < i - 1 must be strictly subarray
  * 
+ * http://www.meetqun.com/forum.php?mod=viewthread&tid=6696&page=1#pid46416
  * @author jiashan
  *
  */

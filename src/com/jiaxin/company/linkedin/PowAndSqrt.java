@@ -83,11 +83,12 @@ public class PowAndSqrt {
 				return format(mid);
 			}
 			
-			if (mid < x/ mid) {
+			if (mid < x / mid) {
 				start = mid;
 			} else {
 				end = mid;
 			}
+			
 		}
 		
 		if (Math.abs(start - x/start) < precision) {
@@ -109,7 +110,7 @@ public class PowAndSqrt {
 
 	@Test
 	public void test() {
-		System.out.println(sqrtDouble(1.44));
+		System.out.println(sqrtDouble(2));
 	}
 	
 }

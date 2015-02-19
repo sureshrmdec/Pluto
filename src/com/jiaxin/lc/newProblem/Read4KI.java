@@ -5,6 +5,15 @@ int read4(char[] buf); */
 
 // Implement readline using read 4k
 
+/**
+ * case:
+ * n = 10, read total finally = 9. (4+4+1) not enough, even n
+ * n = 10, read total finally = 10 (4+4+4) enough
+ * n = 10, read total finally = 10 (4+4+3) last time
+ * 
+ * @author jiashan
+ *
+ */
 public class Read4KI {
 
 //public class Read4KI extends Reader4 {
@@ -27,6 +36,12 @@ public class Read4KI {
 			int bytes = Math.min(n - total, temp);
 			System.arraycopy(buffer, 0, buf, total, bytes);
 			total += bytes;
+			
+			/*
+			if (temp < 4) {
+				break;
+			}
+			*/
 		}
 		
 		return total;

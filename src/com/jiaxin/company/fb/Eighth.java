@@ -2,7 +2,11 @@ package com.jiaxin.company.fb;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.junit.Test;
 
 
 /*
@@ -210,7 +214,53 @@ public class Eighth {
     	return result;
     }
 	
-	
+    public List<List<Integer>> fourSumHashMap(int[] num, int target) {
+    	List<List<Integer>> result = new ArrayList<List<Integer>>();
+
+    	Arrays.sort(num);
+    	if (num == null || num.length == 0) {
+    		return result;
+    	}
+
+    	for (int i = 0; i < num.length - 3; i++) {
+    		if (i != 0 && num[i] == num[i - 1]) {
+    			i++;
+    		}
+
+    		for (int j = i + 1; j < num.length - 2; j++) {
+    			if (j != i + 1 && num[j] == num[j - 1]) {
+    				j++;
+    			}
+
+    			Set<Integer> dict = new HashSet<Integer>();
+
+    			for (int k = j + 1; k < num.length; k++) {
+    				int rest = target - num[i] - num[j] - num[k];
+    				if (rest < 0) {
+    					break;
+    				}
+    				
+    				if (dict.contains(rest)) {
+    					List<Integer> list = new ArrayList<Integer>();
+    					list.add(num[i]);
+    					list.add(num[j]);
+    					list.add(rest);
+    					list.add(num[k]);
+    					
+    					result.add(list);
+
+    				} else {
+    					dict.add(num[k]);
+    				}
+    			}
+    		}
+    	}
+
+    	return result;
+    }
+
+    
+    
 	/**************************************************************************/
 	// 3. Given a rotated sorted array in one specified direction, return if a number exists or not. e.g 7 8 1 3 6 x=1  (Ninja)
     public int search(int[] A, int target) {
@@ -257,6 +307,7 @@ public class Eighth {
 	
 	/**************************************************************************/
 	// 4. Palindrome Detector (Jedi) -> Valid Palindrome
+    // could also use stack(half, half)
     public boolean isPalindrome(String s) {
 		if (s == null) {
 			return false;
@@ -294,30 +345,65 @@ public class Eighth {
 	
 	/**************************************************************************/
 	// 5. Read 4k  (Ninja)
-	public int read(char[] buf, int n) {
+    public int readOnce(char[] buf, int n) {
 		char[] buffer = new char[4];
-		
+		boolean eof = true;
 		int total = 0;
 		
-		while (total < n) {
-			int bytes = read4(buf);
+		while (eof && total < n) {
+			int temp = read4(buffer);
+			if (temp < 4) {
+				eof = false;
+			}
 			
-			bytes = Math.min(total - n, bytes);
+			int bytes = Math.min(n - total, temp);
 			System.arraycopy(buffer, 0, buf, total, bytes);
 			total += bytes;
 			
-			if (bytes < 4) {
+			/*
+			if (temp < 4) {
 				break;
 			}
+			*/
 		}
 		
 		return total;
 	}
     
-	int read4(char[] buf) {
+    // Multiple call version
+    private char[] buffer = new char[4];
+	private int bufsize = 0;
+	private int offset = 0;
+	
+	public int read(char[] buf, int n) {
+		int total = 0;
+		boolean eof = true;
+		
+		while (eof && total < n) {
+			if (bufsize == 0) {
+				bufsize = read4(buffer);
+				
+				if (bufsize < 4) {
+					eof = false;
+				}
+			}
+			
+			int bytes = Math.min(n - total, bufsize);
+			System.arraycopy(buffer, offset, buf, total, bytes);
+			
+			offset = (offset + bytes) % 4;
+			bufsize -= bytes;
+			total += bytes;
+		}
+		
+		return total;
+	}
+    
+    
+	// API funciton
+	public int read4(char[] buf) {
 		return 0;
 	}
-
 	
 	/**************************************************************************/
 	// 6. Given a DAG(Directed Acyclic Graph), find the longest path in it. (Ninja) - Graph Longest Path
@@ -330,9 +416,11 @@ public class Eighth {
 	
 
 
-
-	public static void main(String[] args) {
-		int[] A = {1, 2, 3};	
+    @Test
+	public void test() {
+		int[] A = {-3,-2,-1,0,0,1,2,3};	
+		System.out.println(fourSum(A, 0));
+		System.out.println(fourSumHashMap(A, 0));
 	}
 	
 	class ListNode {
