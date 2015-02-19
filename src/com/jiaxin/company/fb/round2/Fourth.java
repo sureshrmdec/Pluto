@@ -3,12 +3,8 @@ package com.jiaxin.company.fb.round2;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
-import java.util.Stack;
-
 
 
 /*
@@ -110,32 +106,6 @@ public class Fourth {
 	
 	
 	// 3. Serialize / Deserialize a binary tree
-	public static String serialize(TreeNode root) {
-		Queue<TreeNode> queue = new LinkedList<TreeNode>(); 
-		queue.add(root);
-		
-		StringBuilder sb = new StringBuilder();
-		
-		while (!queue.isEmpty()) {
-			int size = queue.size();
-			
-			for (int i = 0; i < size; i++) {
-				root = queue.poll();
-				if (root == null) {
-					sb.append("#");
-				} else {
-					sb.append(root.val);
-				}
-				
-				queue.add(root.left);
-				queue.add(root.right);
-			}
-		}
-		
-		return sb.toString();
-	}
-	
-	
 	public static String serializeRecursive(TreeNode root) {
 		StringBuilder sb = new StringBuilder();
 		
@@ -234,7 +204,7 @@ public class Fourth {
 		node10.left = node50; 
 		node20.left = node45; node20.right = node35;
 		
-		String result = serialize(node30);
+		String result = serializeRecursive(node30);
 		System.out.println("result " + result);
 		
 		TreeNode newRoot = deserializeRecursive(result);

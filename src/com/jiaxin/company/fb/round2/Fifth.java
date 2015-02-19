@@ -7,12 +7,12 @@ import java.util.List;
 /*
  * Andorid, skip most 
  * Phone:
- * 1. Max Number of meetings to attend from a list of meetings -- find largest single intervals 
+ * 1. Max Number of meetings to attend from a list of meetings 
  * 2. Remove zeros from array -- same as sort colors
  * 
  * onsite
  * 
- * 1. Binary tree to linked list (Ninja)  -- Any non-recursive way to do this?
+ * 1. Binary tree to linked list (Ninja)  -- Any non-recursive way to do this? Done
  * 2. Roman Numerals into Integers (Ninja)
  * 3. Design an HTTP downloader. Be explicit about classes, their functions, data structures and method signatures. (Pirate)
  * 4. Reverse a linked list (Jedi) 
@@ -52,6 +52,21 @@ public class Fifth {
 		return zeroIndex + 1;
 	}
 	
+	// overlap directly
+	public static int removeZerosEasy(int[] A) {
+		if (A == null || A.length == 0) {
+			return 0;
+		}
+		
+		int size = 0;
+		for (int i = 0; i < A.length; i++) {
+			if (A[i] != 0) {
+				A[size++] = A[i];
+			}
+		}
+		
+		return size;
+	}
 	
 	
 
@@ -121,7 +136,8 @@ public class Fifth {
 	public static void main(String[] args) {
 		int[] A = {1, 0, 2, 4, 0, 3} ;
 		
-		removeZeros(A);
+//		removeZeros(A);
+		removeZerosEasy(A);
 		List<Integer> list = new ArrayList<Integer>();
 		for (Integer x : A) {
 			list.add(x);

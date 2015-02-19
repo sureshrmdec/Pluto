@@ -206,7 +206,7 @@ public class MeetQun1 {
 	 * Tree Seriliazation
 	 * http://www.meetqun.com/thread-469-1-16.html
 	 * 
-	 * find 1s number in binary format
+	 * find 1s number in binary format  -> hamming weight, popcount
 	 * 
 	 * wildcard matching
 	 * 
@@ -217,7 +217,7 @@ public class MeetQun1 {
 	 * 
 	 * str str call many times?
 	 * 
-	 * check ifa bipartite path
+	 * check if a bipartite path
 	 * 
 	 * Minimum Window Substring input： String s= "aaccbc", dict = “abc”， 输出: "accb" 这里的dict, 里面不含重复字母，
 	 * 
@@ -246,7 +246,7 @@ public class MeetQun1 {
 	 * 
 	 * Meetings 
 	 * http://www.meetqun.com/thread-2209-1-62.html
-	 * 
+	 * http://www.meetqun.com/thread-4890-2-1.html
 	 *  Sink zero in Binary Tree, 递归暴力 O(nlogn)退化O(n^2), 队列O(n).
 	 *  
 	 *  oncampus

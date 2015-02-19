@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class DecodeWays {
 	// Test case: "10", "100"  if 0 apears and can't form a two digits. it will be 0. can't be decoded.
-	
 	public int numDecodings(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
@@ -37,19 +36,26 @@ public class DecodeWays {
 			return 0;
 		}
 		
-		if (s.length() == 1) {
+        // terminate condition
+        if (s.length() == 1) {
 			return s.charAt(0) == '0' ? 0 : 1; 
 		} 
-		
-		int first = s.charAt(0) - '0';
+        
+        
+        int first = s.charAt(0) - '0';
 		int second = s.charAt(1) - '0';
+        
 		int twoDigit = first * 10 + second;
 		
 		if (twoDigit >= 10 && twoDigit <= 26) {
-			return numDecodingsRecursive(s.substring(1)) + numDecodingsRecursive(s.substring(2));
-		} else {
-			return numDecodingsRecursive(s.substring(1));
+			if (s.length() == 2) {
+				return 1 + numDecodings(s.substring(1));
+			} else {
+				return numDecodings(s.substring(1)) + numDecodings(s.substring(2));
+			}
 		}
+		
+		return numDecodings(s.substring(1));
 	}
 	
 	

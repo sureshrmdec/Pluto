@@ -294,10 +294,30 @@ public class Eighth {
 	
 	/**************************************************************************/
 	// 5. Read 4k  (Ninja)
-	
+	public int read(char[] buf, int n) {
+		char[] buffer = new char[4];
+		
+		int total = 0;
+		
+		while (total < n) {
+			int bytes = read4(buf);
+			
+			bytes = Math.min(total - n, bytes);
+			System.arraycopy(buffer, 0, buf, total, bytes);
+			total += bytes;
+			
+			if (bytes < 4) {
+				break;
+			}
+		}
+		
+		return total;
+	}
     
-    
-	
+	int read4(char[] buf) {
+		return 0;
+	}
+
 	
 	/**************************************************************************/
 	// 6. Given a DAG(Directed Acyclic Graph), find the longest path in it. (Ninja) - Graph Longest Path
