@@ -92,22 +92,27 @@ public class IteratorAndLevelOrder {
 		return Math.max(left, right) + 1;
 	}
 
-	private void helper(List<List<Integer>> res, TreeNode root, int level) {
-		if (root == null)
-			return;
-		if (res.size() - 1 < level)
-			res.add(new ArrayList<Integer>());
-		res.get(level).add(root.val);
-		helper(res, root.left, level + 1);
-		helper(res, root.right, level + 1);
-	}
-
+	
 	public List<List<Integer>> levelOrderDFS2(TreeNode root) {
-		List<List<Integer>> res = new ArrayList<List<Integer>>();
-		helper(res, root, 0);
-		return res;
+		List<List<Integer>> result = new ArrayList<List<Integer>>();
+		helper(result, root, 1);
+	
+		return result;
 	}
 	
+	private void helper(List<List<Integer>> result, TreeNode root, int level) {
+		if (root == null) {
+			return;
+		}
+			
+		if (result.size() < level) {
+			result.add(new ArrayList<Integer>());
+		}
+			
+		result.get(level - 1).add(root.val);
+		helper(result, root.left, level + 1);
+		helper(result, root.right, level + 1);
+	}
 
 	/******************************************************************************/
 	public class BSTIterator {

@@ -4,9 +4,6 @@ import java.util.PriorityQueue;
 
 /**
  * 
- * 1、每遇到新元素，和max heap的top比较（min的top也可），小于则插入max heap中，否则插入min heap。
-2、heap之间的平衡：如果两个heap的size差在1以上，则把多的那个的top摘下来放进另一个里，两个堆重新heapify。
-3、输出较大的那个堆的top，若相等则按题目要求输出max 的top
  * 
  * @author jiashan
  *

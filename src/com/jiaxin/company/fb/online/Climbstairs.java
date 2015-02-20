@@ -7,10 +7,19 @@ import org.junit.Test;
  
 
 /**
- * 1. How many solutions. - Recursive | Iterative
- * 2. All solutions(steps)
+ * 1. All solutions(steps)
+ * 2. Print all solutions, no need to return. 
+ * 3. How many solutions. - Recursive | Iterative  O(n) + O(1)
+ * 4. How many solutions. log(n)
+ * 
+ * fn+1 = 1 1 ^n-1 * f1
+ * fn     1 0  	     f0
+ * --> use pow to calculate n
  * 
  * http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
+ * http://www.cnblogs.com/kedebug/archive/2012/11/28/2792333.html
+ * http://www.gocalf.com/blog/calc-fibonacci.html
+ * 
  * @author jiashan
  *
  */
@@ -69,7 +78,9 @@ public class Climbstairs {
     }
     
     
-    // all solutions
+    
+    
+    // all solutions - save result space but still need O(n);
     public List<List<Integer>> climbStairsSolutions(int n) {
         List<List<Integer>> result = new ArrayList<List<Integer>>();
 		List<Integer> list = new ArrayList<Integer>();
@@ -100,10 +111,10 @@ public class Climbstairs {
     
 	@Test
 	public void test() {
-		System.out.println(climbStairs(10));
-		System.out.println(climbStairsIterative(10));
-		System.out.println(climbStairsSolutions(10).size());
-		System.out.println(climbStairsSolutions(10));
+		System.out.println(climbStairs(5));
+		System.out.println(climbStairsIterative(5));
+		System.out.println(climbStairsSolutions(5).size());
+		System.out.println(climbStairsSolutions(5));
 	}
     
 }

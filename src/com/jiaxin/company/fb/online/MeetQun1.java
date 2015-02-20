@@ -2,6 +2,9 @@ package com.jiaxin.company.fb.online;
 
 public class MeetQun1 {
 	/**
+	 * 
+	 * http://www.fgdsb.com/archives/page/7/
+	 * 
 	 * intern Onsite: http://www.meetqun.com/thread-5087-1-1.html
 	 * 1.imitate cd. simplify path
 	 * 2. 1=>[A,B,C], 2=>[D,E,F]. give a integer, find all char conbination

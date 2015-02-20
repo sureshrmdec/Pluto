@@ -11,6 +11,13 @@ import org.junit.Test;
  * start < i - 1 must be strictly subarray
  * 
  * http://www.meetqun.com/forum.php?mod=viewthread&tid=6696&page=1#pid46416
+ * 
+ * ---------------------------------------------------------------------------
+ * Find Longest Contiguous Subarray Sum to Zero, For example:
+ * {1, 2 -3, 1, 5, -5, 6} should return {2, -3, 1, 5, -5}
+ * 
+ * http://www.geeksforgeeks.org/find-if-there-is-a-subarray-with-0-sum/
+ * 
  * @author jiashan
  *
  */
