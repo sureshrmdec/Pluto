@@ -85,9 +85,10 @@ public class CanIWin {
 	
 	@Test
 	public void test() throws Exception {
-//		Assert.assertEquals(false, canIWin(3, 4));
+		Assert.assertEquals(false, canIWin(3, 4));
 		Assert.assertEquals(true, canIWin(3, 5));
 		Assert.assertEquals(true, canIWin(5, 12));
+		Assert.assertEquals(true, canIWin(2, 1));
 	}
 	
 }

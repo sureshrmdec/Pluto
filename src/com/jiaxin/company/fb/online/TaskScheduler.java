@@ -22,17 +22,56 @@ public class TaskScheduler {
 	
 	public int taskScheduler(String task, int coolDown) {
 		int total = 0;
+		int interval = 0;
+		
 		Map<Character, Integer> dict = new HashMap<Character, Integer>();
 		char[] tasks = task.toCharArray();
 		
 		for (int i = 0; i < tasks.length; i++) {
 			if (dict.containsKey(tasks[i])) {
-				total += i - dict.get(tasks[i]) > 2 ? 1 : 3 - (i - dict.get(tasks[i])) + 1;  
+				int distance = i + interval - dict.get(tasks[i]); // find distance with last same char.
+				
+				if (distance <= 2) {
+					int curInterval = 3 - (i + interval - dict.get(tasks[i]));
+					interval += curInterval;  // cool down time
+					total += curInterval + 1; // 1 means that task 
+				} else {
+					total += 1;
+				}
 			} else {
 				total += 1;
 			}
 			
-			dict.put(tasks[i], total); // update index
+			dict.put(tasks[i], i + interval); // update index
+		}
+		
+		return total;
+	}
+	
+	
+	public int taskSchedulerCoolDown(String task, int coolDown) {
+		int total = 0;
+		int interval = 0;
+		
+		Map<Character, Integer> dict = new HashMap<Character, Integer>();
+		char[] tasks = task.toCharArray();
+		
+		for (int i = 0; i < tasks.length; i++) {
+			if (dict.containsKey(tasks[i])) {
+				int distance = i + interval - dict.get(tasks[i]); // find distance with last same char.
+				
+				if (distance <= coolDown) {
+					int curInterval = coolDown + 1 - (i + interval - dict.get(tasks[i]));
+					interval += curInterval;  // cool down time
+					total += curInterval + 1; // 1 means that task 
+				} else {
+					total += 1;
+				}
+			} else {
+				total += 1;
+			}
+			
+			dict.put(tasks[i], i + interval); // update index
 		}
 		
 		return total;
@@ -41,6 +80,8 @@ public class TaskScheduler {
 	@Test
 	public void test() {
 		String task = "AABABCD";
-		System.out.println(taskScheduler(task, 2));
+		String task2 = "AAABABBCDC";
+		System.out.println(taskScheduler(task2, 2)); //18
+		System.out.println(taskSchedulerCoolDown(task, 3));
 	}
 }
