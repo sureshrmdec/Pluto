@@ -35,17 +35,17 @@ public class SubarraySumToTarget {
 			return false;
 		}
 		
-		int curSum = 0;
+		int curSum = A[0];
 		int start = 0;
 		
-		for (int i = 0; i < A.length; i++) {			
+		for (int i = 1; i < A.length; i++) {			
 			// if exceeds target, remove head. 
 			while (curSum > target && start < i) {
 				curSum -= A[start];
 				start++;
 			}
 			
-			if (curSum == target) {
+			if (curSum == target && i > start) {
 				return true;
 			}
 			
@@ -54,7 +54,7 @@ public class SubarraySumToTarget {
 			}
 		}
 		
-		return false;
+		return curSum == target;
 	}
 	
 	//
@@ -83,16 +83,16 @@ public class SubarraySumToTarget {
 	public void test() {
 		int[] A = {15, 2, 4, 8, 9, 5, 10, 23};
 		int[] B = {4, 2, -3, 1, 6};
-		int[] C = {-3, 2, 3, 1, 6};
 		
-		System.out.println(subarraySum(A, 9));
-		System.out.println(subarraySum(B, 0));
+		int[] C = {1, 3, 7, 23};
+		
+
 		System.out.println(subarraySum(C, 0));
-		
-		System.out.println("----------------------");
-		
-		System.out.println(zeroSumSubarray(A, 7));
-		System.out.println(zeroSumSubarray(B, 0));
-		System.out.println(zeroSumSubarray(C, 4));
+//		
+//		System.out.println("----------------------");
+//	
+//		System.out.println(zeroSumSubarray(C, 10));
+//		System.out.println(zeroSumSubarray(C, 9));
+//		System.out.println(zeroSumSubarray(C, -7));
 	}
 }

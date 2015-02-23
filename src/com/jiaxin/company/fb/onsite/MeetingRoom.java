@@ -1,4 +1,4 @@
-package com.jiaxin.company.fb.online;
+package com.jiaxin.company.fb.onsite;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +36,7 @@ import org.junit.Test;
  * @author jiashan
  *
  */
-public class Meeting {
+public class MeetingRoom {
 	// if there's overlapping?
 	public boolean attendMettings(Interval[] pairs) {
 		if (pairs == null || pairs.length == 0) {
