@@ -215,18 +215,80 @@ public class FBBinarySearch {
 	
 	/**********************************************************************************************/
 	// Bit 
-	public int divideBit(int dividend, int divisor) {
-		return 0;
+	public int divideBitOperation(int dividend, int divisor) {
+		if (dividend == Integer.MIN_VALUE && divisor== -1) {
+			return Integer.MAX_VALUE;
+		}
 		
+		boolean isNegative = (dividend > 0 && divisor < 0) || (dividend < 0 && divisor > 0);
+		
+		long a = Math.abs((long)dividend);
+		long b = Math.abs((long)divisor);
+		
+		int result = 0;
+		
+		while (a >= b) {
+			int shift = 1;
+			
+			while ((b << shift) <= a) {
+				shift++;
+			}
+			
+			a -= b << (shift - 1);
+			result += 1 << (shift - 1);
+		}
+		
+		return isNegative? -result : result;
 	}
-	
-	
-	
 	
 	// + and -
 	public int divide(int dividend, int divisor) {
-		return 0;
+		if (dividend == Integer.MIN_VALUE && divisor== -1) {
+			return Integer.MAX_VALUE;
+		}
 		
+		boolean isNegative = (dividend > 0 && divisor < 0) || (dividend < 0 && divisor > 0);
+		
+		long a = Math.abs((long)dividend);
+		long b = Math.abs((long)divisor);
+		
+		int result = 0;
+		
+		while (a >= b) {
+			int multi = 1; 
+			long temp = b;
+			
+			while (a >= temp) {
+				a -= temp;
+				temp += temp;
+				result += multi;
+				multi += multi; // different from bit, bit is shift. here is 1 << shift.
+			}
+		}
+		
+		return isNegative ? -result : result;
+	}
+	
+	@Test
+	public void test5() {
+		System.out.println(divideBitOperation(Integer.MAX_VALUE, 1));
+		System.out.println(divideBitOperation(Integer.MAX_VALUE, -1));
+		// 011...1 -> max . shift 31. //1 000 -> min
+		System.out.println(divideBitOperation(Integer.MIN_VALUE, 1));   
+		// for this case, we can't get right value through calculate, only add logic to control
+		System.out.println(divideBitOperation(Integer.MIN_VALUE, -1));
+		System.out.println(divideBitOperation(3, 9));
+		System.out.println(divideBitOperation(187, -14));
+		
+		System.out.println("-----------------------------------------");
+		System.out.println(divide(Integer.MAX_VALUE, 1));
+		System.out.println(divide(Integer.MAX_VALUE, -1));
+		// 011...1 -> max . shift 31. //1 000 -> min
+		System.out.println(divide(Integer.MIN_VALUE, 1));   
+		// for this case, we can't get right value through calculate, only add logic to control
+		System.out.println(divide(Integer.MIN_VALUE, -1));
+		System.out.println(divide(3, 9));
+		System.out.println(divide(187, -14));
 	}
 	
 }
