@@ -12,8 +12,8 @@ import org.junit.Test;
  * 3. How many solutions. - Recursive | Iterative  O(n) + O(1)
  * 4. How many solutions. log(n)
  * 
- * fn+1 = 1 1 ^n-1 * f1
- * fn     1 0  	     f0
+ * fn+1 = 1 1 ^n * f1
+ * fn     1 0  	   f0
  * --> use pow to calculate n
  * 
  * http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
@@ -109,12 +109,44 @@ public class Climbstairs {
 		list.remove(list.size() - 1);
 	}
     
+	// Just Print out results.
+	 public void climbStairsPrintSolutions(int n) {
+			List<Integer> list = new ArrayList<Integer>();
+	        
+			search(list, n);
+	 }
+
+	private void search(List<Integer> list, int i) {
+		if (i == 0) {
+			System.out.println(list);
+			return;
+		}
+
+		if (i < 0) {
+			return;
+		}
+
+		list.add(1);
+		search(list, i - 1);
+		list.remove(list.size() - 1);
+
+		list.add(2);
+		search(list, i - 2);
+		list.remove(list.size() - 1);
+	}
+	
+	
+	// Log(n)
+	
+	
+	
 	@Test
 	public void test() {
 		System.out.println(climbStairs(5));
 		System.out.println(climbStairsIterative(5));
 		System.out.println(climbStairsSolutions(5).size());
 		System.out.println(climbStairsSolutions(5));
+		climbStairsPrintSolutions(5);
 	}
     
 }

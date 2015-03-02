@@ -10,6 +10,7 @@ import org.junit.Test;
  * 4. At Most K Transaction - not exactly K times. Totally different
  * https://gist.github.com/ElninoFong/d08051d98e634991cd93
  * http://blog.csdn.net/fightforyourdream/article/details/14503469
+ * https://oj.leetcode.com/discuss/15153/a-clean-dp-solution-which-generalizes-to-k-transactions
  * 
  * @author jiashan
  *

@@ -53,6 +53,8 @@ public class DecodeWays {
 			} else {
 				return numDecodings(s.substring(1)) + numDecodings(s.substring(2));
 			}
+		} else if (first == 0 || second == 0) {
+			return 0;
 		}
 		
 		return numDecodings(s.substring(1));

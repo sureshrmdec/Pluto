@@ -1,10 +1,25 @@
 package com.jiaxin.lc.dp.matrix;
 
 import java.util.List;
+/**
+ * DP implementation: 1. Memory Search 2. Loop
+ * 1. up -> down (0,0) -> (1,0), (1,1)
+ * 
+ * 2. down -> up calculate last layer first, and then upper layer
+ * 
+ * DFS:  
+ * O(2^n). Everytime has 2 decision, n level in total. (if not using memory). 
+ * O(n^2). x, y, total n^2 possible way. (using memory)
+ * 
+ * f[i][j]. minimum total from (i, j) to (0, 0)
+ * 
+ * @author jiashan
+ *
+ */
 
 public class Triangle {
 	
-	// DFS -- Recursive
+	// DFS -- Recursive (Memory Search)
 	int n;
 	int[][] sum;
 	List<List<Integer>> triangle;
