@@ -1,8 +1,15 @@
 package com.jiaxin.lc.dp.sequence;
 
-
+/**
+ * Almost same to Work Break. 
+ * 
+ * Palindrome optimization is important.
+ * 
+ * @author jiashan
+ *
+ */
 public class PalindromePartitionII {
-	// j from right to left.
+	
 	public int minCut(String s) {
 		if (s == null || s.length() == 0) {
 			return 0;
@@ -24,6 +31,7 @@ public class PalindromePartitionII {
 		return cut[s.length()] - 1;
 	}
 
+	
 	private boolean[][] getPalindromeMatrix(String s) {
 		boolean[][] isPalindrome = new boolean[s.length()][s.length()];
 		

@@ -20,6 +20,7 @@ public class ResourcePool {
 	}
 	
 	public Object obtain() {
+		// we could ensureCapacity here.
 		if (used.size() == capacity) {
 			return null;
 		}

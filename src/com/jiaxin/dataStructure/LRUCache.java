@@ -3,6 +3,12 @@ package com.jiaxin.dataStructure;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Map - Key, key. Value Node
+ * Node- key & value
+ * @author jiashan
+ *
+ */
 public class LRUCache {
 
 	Map<Integer, Node> map = new HashMap<Integer, Node>();
@@ -31,7 +37,7 @@ public class LRUCache {
     
 	public void set(int key, int value) {
 		if (get(key) != -1) {
-			map.get(key).value = value;
+			map.get(key).value = value; // Here, talk to interviewer, if we needs update to tail.
 			return;
 		}
 		

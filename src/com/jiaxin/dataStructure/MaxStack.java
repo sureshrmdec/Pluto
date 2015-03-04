@@ -7,7 +7,7 @@ public class MaxStack {
 	Stack<Integer> maxStack = new Stack<Integer>();
 	
 	public void push(int value) {
-		if (value > peekMax()) {
+		if (!maxStack.isEmpty() && value > peekMax()) {
 			maxStack.push(value);
 		}
 		
@@ -35,6 +35,7 @@ public class MaxStack {
 		}
 	}
 	
+	// This is special from minStack. low efficiency 
 	public int popMax() {
 		Stack<Integer> temp = new Stack<Integer>();
 		while (!stack.isEmpty() && stack.peek() != peekMax()) {

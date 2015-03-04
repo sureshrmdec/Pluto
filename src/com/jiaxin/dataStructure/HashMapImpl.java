@@ -20,12 +20,11 @@ public class HashMapImpl<K, V> {
     private float loadFactor = 0.75f;
     private int threshold;
     private int size;
-    HashMap<Integer, Integer> hash = new HashMap<Integer, Integer>();
     
     
     public HashMapImpl() {
         table = new Entry[DEFAULT_INNITIAL_CAPACITY];
-        size = DEFAULT_INNITIAL_CAPACITY;
+        size = 0;
         threshold = (int) (DEFAULT_INNITIAL_CAPACITY * loadFactor);
     }
     
@@ -37,7 +36,7 @@ public class HashMapImpl<K, V> {
         return hash % (length - 1);
     }
     
-    public V get(Object key) {
+    public V get(K key) {
         if (key == null) {
             return getForNullKey();
         }

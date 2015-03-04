@@ -57,7 +57,7 @@ public class Triangle {
 	}
 
 
-	// DP way - Iterative
+	// DP way - Iterative -- Bottom to Up
 	public int minimumTotal(List<List<Integer>> triangle) {
 		if (triangle == null || triangle.size() == 0) {
 			return 0;
@@ -78,4 +78,19 @@ public class Triangle {
 		
 		return sum[0][0];
 	}
+	
+	// DP -- Iterative -- Up to Bottom
+	public int minimumTotalUpToBottom(List<List<Integer>> triangle) {
+		if (triangle == null || triangle.size() == 0) {
+			
+		}
+		
+		int n = triangle.size();
+		int[][] f = new int[n][n];  
+		// f[i][j] from (0,0) to (i,j) minimum Total. 
+		// result -> find Max in the bottom level. 
+		
+		return n;
+	}
+	
 }

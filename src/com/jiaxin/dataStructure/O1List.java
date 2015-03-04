@@ -9,13 +9,12 @@ import java.util.Map;
  *
  *题是设计一个data structrue, 要求O(1) add, search, random remove。
  *这题答得也不好，不过国人大哥提醒了好多，最后也算是答出来了，用一个hashmap和array即可
- *
+ *http://stackoverflow.com/questions/5682218/data-structure-insert-remove-contains-get-random-element-all-at-o1
  *
  * Implement a data structure similar to LinkedList. Need to have the following function.
  * 1. void add(T t) 2. T get(int index) 3. int size() 4. void remove(T t)
  * add 必须o1, 用hashMap + linked list
  *
- * http://stackoverflow.com/questions/5682218/data-structure-insert-remove-contains-get-random-element-all-at-o1
  *
  * @param <T>
  */
