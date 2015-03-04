@@ -73,5 +73,8 @@ public class FBDecodeWays {
 		System.out.println(numDecodings(s3) + " " + numDecodingRecursive(s3));
 		String s4 = "0";  // s.length() == 1 case.
 		System.out.println(numDecodings(s4) + " " + numDecodingRecursive(s4));
+		
+		String s5 = "6165812287883668764831544958683283296479682877898293612168136334983851946827579555449329483852397155";
+		System.out.println(numDecodings(s5) + " " + numDecodingRecursive(s5));
 	}
 }

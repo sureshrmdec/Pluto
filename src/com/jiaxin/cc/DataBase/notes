@@ -1,6 +1,0 @@
-Select Students.StudentName , count(*)
-From Students INNER JOIN StudentCoureses
-ON Students.ID = StudentCourses.studentID
-GROUP BY Student.StudentID
-
-
