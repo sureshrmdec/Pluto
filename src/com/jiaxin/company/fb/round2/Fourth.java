@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+
 
 /*
  * Android, skip
@@ -23,7 +25,7 @@ import java.util.Map;
 public class Fourth {
 
 	// 1. in-place palindrome. LC: Valid Palindrome
-	public static boolean isPalindrome(String s) {
+	public boolean isPalindrome(String s) {
 		if ( s == null) {
 			return false;
 		}
@@ -106,7 +108,7 @@ public class Fourth {
 	
 	
 	// 3. Serialize / Deserialize a binary tree
-	public static String serializeRecursive(TreeNode root) {
+	public String serializeRecursive(TreeNode root) {
 		StringBuilder sb = new StringBuilder();
 		
 		serializeHelper(sb, root);
@@ -114,7 +116,7 @@ public class Fourth {
 		return sb.toString().substring(0, sb.length() - 1);
 	}
 	
-	private static void serializeHelper(StringBuilder sb, TreeNode root) {
+	private void serializeHelper(StringBuilder sb, TreeNode root) {
 		if (root == null) {
 			sb.append("#" + ",");
 			return;
@@ -125,15 +127,15 @@ public class Fourth {
 		serializeHelper(sb, root.right);
 	}
 
-	static int i = 0;
-	public static TreeNode deserializeRecursive(String str) {
+	int i = 0;
+	public TreeNode deserializeRecursive(String str) {
 		String[] strs = str.split(",");
 		
 		return deserializeHelper(strs);		
 	}
 	
 
-	private static TreeNode deserializeHelper(String[] strs) {
+	private TreeNode deserializeHelper(String[] strs) {
 		if (i > strs.length - 1) {
 			return null;
 		}
@@ -151,7 +153,7 @@ public class Fourth {
 	}
 
 	// 4. Anagram bucket (Jedi) - has the thought of Bucket sort - same to LC. -- Test case: ["", ""]
-    public static List<String> anagrams(String[] strs) {
+    public List<String> anagrams(String[] strs) {
     	List<String> result = new ArrayList<String>();
     	Map<String, List<String>> map = new HashMap<String, List<String>>();
 		
@@ -180,8 +182,8 @@ public class Fourth {
     	return result;
     }
 	
-	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		
 		String[] strs = {"",""};
 		System.out.println(anagrams(strs));
@@ -214,7 +216,7 @@ public class Fourth {
 	}
 	
 	
-	static class ListNode {
+	class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) {
@@ -223,7 +225,7 @@ public class Fourth {
 		}
 	}
 	
-	static class TreeNode {
+	class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;

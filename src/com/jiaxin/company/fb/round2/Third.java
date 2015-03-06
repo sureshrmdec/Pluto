@@ -2,8 +2,12 @@ package com.jiaxin.company.fb.round2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Stack;
+
+import org.junit.Test;
 
 
 /*
@@ -25,39 +29,13 @@ bonus of the case you are on).
 public class Third {
 
 	
-	// 1. Given two arrays of integers, A and B, find out how many different integers are in both A and B? -- array union, intersection, 
-	// MyWay is counting..
-	public static List<Integer> findDiffInteger(int[] A, int[] B) {
-		List<Integer> result = new ArrayList<Integer>(A.length);
-		boolean[] Aarray = new boolean[A.length];
-		boolean[] Barray = new boolean[B.length];
-		
-		for (int i = 0; i < A.length; i++) {
-			for (int j = 0; j < B.length; j++) {
-				if (A[i] == B[j]) {
-					Aarray[i] = true;
-					Barray[j] = true;
-				}
-			}
-		}
-		
-		for (int i = 0; i < A.length; i++) {
-			if (Aarray[i] == false) {
-				result.add(A[i]);
-			}
-		}
-
-		for (int i = 0; i < B.length; i++) {
-			if (Barray[i] == false) {
-				result.add(B[i]);
-			}
-		}
-		
-		return result;
-	}
-	
-	// General way -- think them as sorted array, two pointer - find common. O(m*n) Diff, just need another round iterator
-	public static List<Integer> findCommon(int[] A, int[] B) {
+	// 1. Array union, intersection, 
+	/**
+	 *  1. General way -- think them as sorted array, two pointer - find common. O(nlogn) + O(n)
+	 *  2. HashSet. add all element in A, and then check go through B, if HashSet contains, print
+	 * @return
+	 */
+	public List<Integer> findCommon(int[] A, int[] B) {
 		List<Integer> result = new ArrayList<Integer>();
 		if (A == null || B == null || A.length == 0 || B.length == 0) {
 			return result;
@@ -77,10 +55,70 @@ public class Third {
 			} else {
 				result.add(A[i]);
 				i++;
+				j++;
 			}
 		}
 		
 		return result;
+	}
+	/**
+	 * 1. Just use Hashset  O(n) + O(n)
+	 * 2. Sorted, sames as common, add smaller one and any of equals one. O(nlogn) + O(n) 
+	 * 
+	 * @return
+	 */
+	public List<Integer> findUnion(int[] A, int[] B) {
+		Set<Integer> union = new HashSet<Integer>();
+		for (int number : A) {
+			union.add(number);
+		}
+		
+		for (int number : B) {
+			union.add(number);
+		}
+		
+		return new ArrayList<Integer>(union);
+	}
+	
+	public List<Integer> findUnionSort(int[] A, int[] B) {
+		List<Integer> result = new ArrayList<Integer>();
+		if (A == null || B == null || A.length == 0 || B.length == 0) {
+			return result;
+		}
+		
+		Arrays.sort(A);
+		Arrays.sort(B);
+		
+		int i = 0;
+		int j = 0;
+		
+		while (i < A.length && j < B.length) {
+			if (A[i] < B[j]) {
+				result.add(A[i]);
+				i++;
+			} else if (A[i] > B[j]) {
+				result.add(B[j]);
+				j++;
+			} else {
+				result.add(A[i]);
+				i++;
+				j++;
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 *  Diff = Union - Common
+	 *  1. Hashset. add all elements of A, and then check B's. print not 
+	 * @return
+	 */
+	
+	public List<Integer> findDiff(int[] A, int[] B) {
+		
+		
+		return null;
 	}
 	
 	// 2. Given a space ship starting at (X0, Y0), knowing that the shaceship can only do S(X,Y) - (X,Y+1), (X-1,Y+1),
@@ -120,7 +158,7 @@ public class Third {
 	
 	
 	// 2. Look and say (Ninja)
-    public static String countAndSay(int n) {
+    public String countAndSay(int n) {
     	String oldString = "1";
     	
     	while (--n > 0) {
@@ -147,8 +185,9 @@ public class Third {
 	// 3. Proximity Search (Pirate) -- do Pirate together
     
     
-    // 4. Max Rectabgke Area Underneath Histogram (Jedi)
-    public static int largestRectangleArea(int[] height) {
+    // 4. Max Rectangle Area Underneath Histogram (Jedi)
+    // http://www.cnblogs.com/lichen782/p/leetcode_Largest_Rectangle_in_Histogram.html
+    public int largestRectangleArea(int[] height) {
     	if (height == null || height.length == 0) {
     		return 0;
     	}
@@ -200,7 +239,14 @@ public class Third {
 		}
 	}
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
+		int[] A1 = {1,3,4,5,7};
+		int[] B1 = {2,3,5,6};
+		
+		System.out.println(findCommon(A1, B1));
+		System.out.println(findCommon(A1, B1));
+		
 		int[] height = {2,1,5,6,2,3};
 		System.out.println(largestRectangleArea(height));
 		

@@ -18,7 +18,7 @@ import java.util.Set;
  * 
  * Onsite:
  * 1. Print tree by levels (Ninja)
- * 2. Enumerate substrings of a string which are palindromes (Ninja) -- get all substring first?
+ * 2. Enumerate substrings of a string which are palindromes (Ninja)
  * 3. Max Intervals (Jedi)
  * 4. Graph clone (Jedi)
  * 5. Build a language classifier given sentences from two languages (Pirate)

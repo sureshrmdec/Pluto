@@ -6,7 +6,7 @@ package com.jiaxin.company.fb.round2;
  * 
  */
 public class Ninth {
-	// 1. sqrt
+	// 1. sqrt - int 
 	public int sqrt(int x) {
 		if (x < 0) {
 			throw new IllegalArgumentException("Can not be negative");

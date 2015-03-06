@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import org.junit.Test;
+
 /*
  * Phone:
  * Seems no phone screen
@@ -166,9 +168,9 @@ public class First {
 	
 	
 	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 
-		
 		
 	}
 	

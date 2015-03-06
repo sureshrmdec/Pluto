@@ -61,7 +61,7 @@ public class Seventh {
 	}
 	
 	
-	// 4. return the most common letter in a string (Ninja)
+	// 5. return the most common letter in a string (Ninja)
 	public char mostCommonLetter(String s) {
 		Map<Character, Integer> map = new HashMap<Character, Integer>();
 		char result = '0';

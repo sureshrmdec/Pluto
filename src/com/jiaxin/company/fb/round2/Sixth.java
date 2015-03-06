@@ -58,7 +58,33 @@ public class Sixth {
 		}
 	}
 
-	// 2. cd command -- Simplify Path?
+	// 2. cd command -- Simplify Path -- support absolute path and relative path
+	public String simplifyPath(String path) {
+		if (path == null || path.length() == 0) {
+			return "";
+		}
+		
+		// C:/d1/d2/.././d3
+		// /d1/d2
+		Stack<String> stack = new Stack<String>();
+		String[] paths = path.split("/");
+		for (String dir : paths) {
+			if ("..".contains(dir)) {
+				if (!stack.isEmpty()) {
+					stack.pop();
+				}
+			} else if (!".".equals(dir) && !"".equals(dir)) {
+				stack.push(dir);
+			}
+		}
+		
+		String result = "";
+		while (!stack.isEmpty()) {
+			result = stack.pop() + result;
+		}
+		
+		return result;
+	}
 	
 	
 	// 3. Area under skyline (Ninja)
@@ -90,51 +116,7 @@ public class Sixth {
 
 	
 	// 5. Football
-	int[] A = {1, 2, 3, 6};
-	public List<List<Integer>> football(int score) {
-		List<List<Integer>> result = new ArrayList<List<Integer>>();
-		int[] list = new int[A.length];
-		
-		footballHelper(result, list, score, 0);
-		
-		return result;
-	}
 	
-	private void footballHelper(List<List<Integer>> result, int[] list, int score, int position) {
-		for (int i = position; i < list.length; i++) {
-			int sum = getSum(list);
-			
-			if (sum == score && list[0] <= list[3]) {
-				result.add(convertToList(list));
-				return;
-			}
-			
-			list[i]++;
-			footballHelper(result, list, score, i);
-			list[i]--;
-		}
-	}
-
-	private List<Integer> convertToList(int[] list) {
-		List<Integer> tempList = new ArrayList<Integer>();
-		for (int i : list) {
-			tempList.add(i);
-		}
-		
-		return tempList;
-	}
-
-	private int getSum(int[] list) {
-		int score = 0;
-		
-		for (int i = 0; i < list.length; i++) {
-			score += A[i] * list[i];
-		}
-		
-		return score;
-	}
-
-
 
 	class ListNode {
 		int val;

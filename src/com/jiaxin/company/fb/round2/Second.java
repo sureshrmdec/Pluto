@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Test;
+
 
 /*
  * Initial Onsite: 
@@ -21,7 +23,42 @@ import java.util.List;
  */
 public class Second {
 	// 1. xml parse  - stack, queue? 
-	// 2. print tree by levels 
+	
+	
+	// 2. print tree by levels -- Try DFS 
+	public void printLevel(TreeNode root) {
+		int height = getHeight(root);
+		
+		for (int i = 1; i <= height; i++) {
+			print(root, i);
+			System.out.println(" ");
+		}
+	}
+	
+	private void print(TreeNode root, int level) {
+		if (root == null) {
+			return;
+		}
+		
+		if (level == 1) {
+			System.out.print(root.val + " ");
+		}
+		
+		print(root.left, level - 1);
+		print(root.right, level - 1);
+	}
+
+	private int getHeight(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		
+		int left = getHeight(root.left);
+		int right = getHeight(root.right);
+		
+		return Math.max(left, right) + 1;
+	}
+
 	// 3. regex
 	
 	
@@ -76,65 +113,31 @@ public class Second {
 		return result;
     }
 	
-	// 2. 
+	// 2. If I can attend all parties? - see meeting special topic
+	
+	// 3. Max non-adjacent subset sum (Ninja) - DP -- same to thief problem? 
+// http://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
 	
 	
-	// 3. Max non-adjacent subset sum (Ninja) - DP
+	
+	@Test
+	public void test() {
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.right = new TreeNode(3);
+		root.left.left = new TreeNode(4);
+		root.left.right = new TreeNode(5);
+		
+		printLevel(root);
+	}
+	
 	
 	// 5. Football Score
-	public static List<List<Integer>> football(int score) {
-		List<List<Integer>> result = new ArrayList<List<Integer>>();
-		int[] A = {1, 2, 3, 6}; // 1 <= 6
-		int[] list = new int[4];
-		
-		footBallHelper(result, list, A, score, 0);
-		
-		return result;
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+		TreeNode(int x) { val = x; }
 	}
-
-	private static void footBallHelper(List<List<Integer>> result, int[] list, int[] A, int score, int position) {
-		for (int i = position; i < list.length; i++) {
-			int sum = getSum(list, A);
-			
-			if (sum == score && list[0] <= list[3]) {
-				result.add(convertToList(list));
-				return;
-			}
-			
-			if (sum > score) {
-				continue;
-			}
-			
-			list[i]++;
-			footBallHelper(result, list, A, score, i);
-			list[i]--;
-		}
-		
-	}
-	
-	private static List<Integer> convertToList(int[] list) {
-		List<Integer> temp = new ArrayList<Integer>();
-		for (int i : list) {
-			temp.add(i);
-		}
-		
-		return temp;
-	}
-
-	private static int getSum(int[] list, int[] A) {
-		int score = 0;
-		
-		for (int i = 0; i < list.length; i++) {
-			score += list[i] * A[i];
-		}
-		
-		return score;
-	}
-
-	public static void main(String[] args) {
-		System.out.println(football(7));
-	}
-	
-	
 	
 }
