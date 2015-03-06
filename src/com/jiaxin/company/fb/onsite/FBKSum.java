@@ -6,15 +6,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Test;
+
 /**
  * 1. 2Sum
  * 2. 3Sum
  * 3. KSum Iterative
  * 4. KSum DP?
  * 
+ * Given n distinct positive integers, integer k (k <= n) and a number target.
+ * Find k numbers where sum is target. Calculate how many solutions there are?
+ * 
  * http://tech-wonderland.net/blog/summary-of-ksum-problems.html
  * http://agooglehacker.blogspot.com/2013/10/2sum-3sum-4sum-ksum.html
  * http://www.cnblogs.com/yuzhangcmu/p/4279676.html
+ * 
+ * 
  * 
  * @author jiashan
  *
@@ -126,4 +133,37 @@ public class FBKSum {
 	/**********************************************************************************************/
 	
 	/**********************************************************************************************/
+    public int kSumDP(int A[], int k, int target) {
+    	if (A == null || target < 0) {
+    		return 0;
+    	}
+		
+    	int length = A.length;
+    	
+    	int[][][] num = new int[length + 1][k + 1][target + 1];
+    	
+    	for (int i = 0; i <= length; i++) {
+    		for (int j = 0; j <= k; j++) {
+    			for (int t = 0; t <= target; t++) {
+    				if (j == 0 && t == 0) {
+    					num[i][j][t] = 1; 
+    				} else if (!(i == 0 || j == 0 || t == 0)) {
+    					num[i][j][t] = num[i - 1][j][t];
+    					if (t - A[i - 1] >= 0) {
+    						num[i][j][t] += num[i - 1][j - 1][t - A[i - 1]];
+    					}
+    				}
+    				
+    			}
+    		}
+    	}
+    	
+    	return num[length][k][target];
+    }
+	
+    @Test
+    public void test() {
+    	int[] A = {1,2,3,4,5,6};
+    	System.out.println(kSumDP(A, 2, 10));
+    }
 }

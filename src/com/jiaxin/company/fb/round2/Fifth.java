@@ -2,6 +2,9 @@ package com.jiaxin.company.fb.round2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
+
+import org.w3c.dom.NodeList;
 
 
 /*
@@ -12,7 +15,7 @@ import java.util.List;
  * 
  * onsite
  * 
- * 1. Binary tree to linked list (Ninja)  -- Any non-recursive way to do this? Done
+ * 1. Binary tree to linked list (Ninja)  -- Recursive | Any non-recursive way to do this? 
  * 2. Roman Numerals into Integers (Ninja)
  * 3. Design an HTTP downloader. Be explicit about classes, their functions, data structures and method signatures. (Pirate)
  * 4. Reverse a linked list (Jedi) 
@@ -87,6 +90,29 @@ public class Fifth {
 		flattern(root.left);
 		flattern(right);
 	}
+	
+	// Non-Recursive way -- use extra space 
+	public void flatternIteration(TreeNode root) {
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		TreeNode node = root;
+		
+		while (!stack.isEmpty() || node != null) {
+			if (node.right != null) {
+				stack.push(node.right);
+			}
+			
+			if (node.left != null) {
+				node.right = node.left;
+				node.left = null;
+			} else if (!stack.isEmpty()) {
+				TreeNode temp = stack.pop();
+				node.right = temp;
+			}
+			
+			node = node.right;
+		}
+	}
+	
 	
 	// 2. Roman Numbers to integers 
 	public int romanToInt(String s) {

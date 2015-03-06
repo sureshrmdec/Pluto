@@ -5,7 +5,9 @@ import java.util.List;
 
 /*
  * Return Offer:
- * 1. Football scores
+ * 1. Football scores. Combination sum. 
+ * 		-- How many possibilities. 
+ * 		-- List all possibilities.  
  * 2. Compute x^n give a double x and an integer n. 
  */
 

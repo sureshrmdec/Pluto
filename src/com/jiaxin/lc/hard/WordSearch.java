@@ -110,8 +110,8 @@ public class WordSearch {
 				{'A', 'D', 'E', 'E'}
 				};
 		
-		System.out.println(exist(board, "ABCCED"));
-		System.out.println(exist(board, "SEE"));
+//		System.out.println(exist(board, "ABCCED"));
+//		System.out.println(exist(board, "SEE"));
 		System.out.println(exist(board, "ABCB"));
 		
 		
