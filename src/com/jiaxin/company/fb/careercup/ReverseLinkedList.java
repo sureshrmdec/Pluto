@@ -23,14 +23,29 @@ public class ReverseLinkedList {
 			head = temp; 
 		}
 		
-		return head;
+		return newHead;
 	}
 	
 	@Test
 	public void test() {
+		ListNode node = new ListNode(1);
+		node.next = new ListNode(2);
+		node.next.next = new ListNode(3);
+		node.next.next.next = new ListNode(4);
 		
+		printLinkedList(node);
+		ListNode newHead = reverseLinkedList(node);
+		
+		printLinkedList(newHead);
 	}
 	
+	public void printLinkedList(ListNode head) {
+		while (head != null) {
+			System.out.print(head.val + " -> ");
+			head = head.next;
+		}
+		System.out.println();
+	}
 	
 	class ListNode {
 		int val;

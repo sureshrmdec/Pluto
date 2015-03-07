@@ -3,6 +3,8 @@ package com.jiaxin.company.fb.round2;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 /*
  * Return Offer:
  * 1. Football scores. Combination sum. 
@@ -14,10 +16,10 @@ import java.util.List;
 public class Eighth {
 	// 1. Football Scores  -- same to money change 1, 5, 10, 25. 2 sub question -- how many ways? how many combination?
 	// 1 2 3 6 (touch down)
-	static int[] A = {1, 2, 3, 6};
-	public static List<List<Integer>> football(int score) {
+	int[] A = {1, 2, 3, 6};
+	public List<List<Integer>> football(int score) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
-		int[] list = new int[4];
+		List<Integer> list = new ArrayList<Integer>();
 		
 		helper(result, list, score, 0);
 		
@@ -25,39 +27,30 @@ public class Eighth {
 	}
 		
 
-	private static void helper(List<List<Integer>> result, int[] list, int score, int position) {
-		for (int i = position; i < list.length; i++) {
+	private void helper(List<List<Integer>> result, List<Integer> list, int score, int position) {
+		for (int i = position; i < list.size(); i++) {
 			int sum = getSum(list);
 			
-			if (sum == score && list[0] <= list[3]) {
-				result.add(convertToList(list));
-				return;
-			}
-			
-			if (sum < score) {
-				list[i]++;
-				helper(result, list, score, i);
-				list[i]--;
-			}
+//			if (sum == score) {
+//				result.add(convertToList(list));
+//				return;
+//			}
+//			
+//			if (sum < score) {
+//				++;
+//				helper(result, list, score, i);
+//				list[i]--;
+//			}
 		}
 	}
 
 
-	private static List<Integer> convertToList(int[] list) {
-		List<Integer> tempList = new ArrayList<Integer>();
-		for (int i: list) {
-			tempList.add(i);
-		}
-		
-		return tempList;
-	}
 
-
-	private static int getSum(int[] list) {
+	private int getSum(List<Integer> list) {
 		int score = 0;
 		
-		for (int i = 0; i < list.length; i++) {
-			score += A[i] * list[i];
+		for (int i = 0; i < list.size(); i++) {
+			score += list.get(i);
 		}
 		
 		return score;
@@ -91,8 +84,8 @@ public class Eighth {
 	
 	
 	
-	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		System.out.println(football(7));
 	}
 	

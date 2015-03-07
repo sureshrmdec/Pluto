@@ -154,16 +154,13 @@ public class Second {
 			return 0;
 		}
 		
-		int[] money = new int[A.length];
-		money[0] = A[0];
 		if (A.length == 1) {
-			return money[0];
+			return A[0];
 		}
 		
+		int[] money = new int[A.length];
+		money[0] = A[0];
 		money[1] = Math.max(A[0], A[1]);
-		if (A.length == 2) {
-			return money[1];
-		}
 		
 		// Could save memory to O(1) with using array. Like fibonacci
 		for (int i = 2; i < A.length; i++) {
@@ -180,14 +177,12 @@ public class Second {
 			
 		int include = A[0];
 		int exclude = 0;
-		System.out.println("exclude: " + exclude + " include: " + include);
 		
 		for (int i = 1; i < A.length; i++) {
-			int lastInclude = include;
-			include = exclude + A[i];
-			exclude = Math.max(exclude, lastInclude);
+			int newExclude = Math.max(exclude, include);
 			
-			System.out.println("exclude: " + exclude + " include: " + include);
+			include = exclude + A[i];
+			exclude = newExclude;
 		}
 		
 		return Math.max(include, exclude);

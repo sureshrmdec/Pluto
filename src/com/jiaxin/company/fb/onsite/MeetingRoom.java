@@ -69,15 +69,14 @@ public class MeetingRoom {
 		List<Integer> endTimes = new ArrayList<Integer>();
 		int room = 1;
 		
-		Interval meeting = pairs[0];
-		endTimes.add(meeting.end);  // all the meetings not finished
+		endTimes.add(pairs[0].end);  // all the meetings not finished
 		
 		for (int i = 1; i < pairs.length; i++) {
 			Interval current = pairs[i];
 			boolean flag = false;
 			
 			for (int j = 0; j < endTimes.size(); j++) {
-				if (current.start >= endTimes.get(j)) {
+				if (endTimes.get(j) <= current.start) {
 					flag = true; 
 					endTimes.remove(j);             // not useful, meeting all ready ends
 					endTimes.add(current.end);      // new times
@@ -115,7 +114,7 @@ public class MeetingRoom {
 		return heap.size();
 	}
 	
-	// max meeting he can attend
+	// max meeting he can attend -- always choose first end
 	public List<Interval> mostMeeting(Interval[] pairs) {
 		List<Interval> result = new ArrayList<Interval>();
 		
@@ -133,6 +132,9 @@ public class MeetingRoom {
 		
 		return result;
 	}
+	
+	// How to find the largest overlap interval
+	
 	
 	
 	public Comparator<Interval> IntervalComparator = new Comparator<Interval>() {

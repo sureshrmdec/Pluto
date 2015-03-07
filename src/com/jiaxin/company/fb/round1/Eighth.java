@@ -31,26 +31,27 @@ public class Eighth {
 	
 	/**************************************************************************/
 	// 1.Powerset -- same as combination, 2^n  -- Recursive
-	public List<List<Integer>> combination(int[] A) {
+	// for every node, exist or not exist.  n number. 2^n. 0000 - 1111. 
+	public List<List<Integer>> subset(int[] A) {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		List<Integer> list = new ArrayList<Integer>();
-		Arrays.sort(A);
 		
 		if (A == null || A.length == 0) {
 			return result;
 		}
 		
-		combinationHelper(result, list, A, 0);
+		Arrays.sort(A);
+		subsetHelper(result, list, A, 0);
 		
 		return result;
 	}
 	
-	private void combinationHelper(List<List<Integer>> result, List<Integer> list, int[] A, int position) {
+	private void subsetHelper(List<List<Integer>> result, List<Integer> list, int[] A, int position) {
 		result.add(new ArrayList<Integer>(list));
 		
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = position; i < A.length; i++) {
 			list.add(A[i]);
-			combinationHelper(result, list, A, i + 1);
+			subsetHelper(result, list, A, i + 1);
 			list.remove(list.size() - 1);
 		}
 	}
@@ -68,7 +69,7 @@ public class Eighth {
 		for (int i = 0; i < A.length; i++) {
 			int size = result.size(); 
 			
-			for (int j = 0; j < A.length; j++) {
+			for (int j = 0; j < size; j++) {
 				List<Integer> list = new ArrayList<Integer>(result.get(j)); 
 				list.add(A[i]);
 				result.add(list);
@@ -421,6 +422,10 @@ public class Eighth {
 		int[] A = {-3,-2,-1,0,0,1,2,3};	
 		System.out.println(fourSum(A, 0));
 		System.out.println(fourSumHashMap(A, 0));
+		
+		int[] B = {1, 2, 3};
+		System.out.println(subset(B));
+		System.out.println(subSetIteration(B));
 	}
 	
 	class ListNode {
