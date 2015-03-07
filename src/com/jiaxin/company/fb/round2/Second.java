@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 
@@ -60,7 +61,38 @@ public class Second {
 	}
 
 	// 3. regex
-	
+    public boolean isMatch(String s, String p) {
+		if (p.length() == 0) {
+			return s.length() == 0; 
+		}
+    	
+    	if (p.length() == 1 || p.charAt(1) != '*') {
+    		if (s.length() < 1) {
+    			return false; 
+    		}
+    		
+    		if (s.charAt(0) != p.charAt(0) && p.charAt(0) != '.') {
+    			return false; 
+    		}
+    		
+    		return isMatch(s.substring(1), p.substring(1));
+    	} else {
+    		if (isMatch(s, p.substring(2))) {
+    			return true;
+    		}
+    		
+    		int i = 0; 
+    		// if not same. isMatch(s, p.substring(2) this one will find out 
+    		while (i < s.length() && (s.charAt(i) == p.charAt(0)) || p.charAt(0) == '.') {
+    			if (isMatch(s.substring(i + 1), p.substring(2))) {
+    				return true;
+    			}
+    			i++;
+    		}
+    	}
+    	
+    	return false;
+    }
 	
 	
 	// 1. Find 3 ints that sum to 0 in an array (Jedi)  - Sum
@@ -117,7 +149,49 @@ public class Second {
 	
 	// 3. Max non-adjacent subset sum (Ninja) - DP -- same to thief problem? 
 // http://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
+	public int stealMoney(int[] A) {
+		if (A == null || A.length == 0) {
+			return 0;
+		}
+		
+		int[] money = new int[A.length];
+		money[0] = A[0];
+		if (A.length == 1) {
+			return money[0];
+		}
+		
+		money[1] = Math.max(A[0], A[1]);
+		if (A.length == 2) {
+			return money[1];
+		}
+		
+		// Could save memory to O(1) with using array. Like fibonacci
+		for (int i = 2; i < A.length; i++) {
+			money[i] = Math.max(money[i - 1], money[i - 2] + A[i]);
+		}
+		
+		return money[A.length - 1];
+	}
 	
+	public int maximumSum(int[] A) {
+		if (A == null || A.length == 0) {
+			return 0;
+		}
+			
+		int include = A[0];
+		int exclude = 0;
+		System.out.println("exclude: " + exclude + " include: " + include);
+		
+		for (int i = 1; i < A.length; i++) {
+			int lastInclude = include;
+			include = exclude + A[i];
+			exclude = Math.max(exclude, lastInclude);
+			
+			System.out.println("exclude: " + exclude + " include: " + include);
+		}
+		
+		return Math.max(include, exclude);
+	}
 	
 	
 	@Test
@@ -129,6 +203,25 @@ public class Second {
 		root.left.right = new TreeNode(5);
 		
 		printLevel(root);
+		
+		// p.length() == 1
+		Assert.assertTrue(isMatch("a", "."));
+		Assert.assertTrue(isMatch("a", "a"));
+		Assert.assertFalse(isMatch("a", "b"));
+		
+		// p.charAt(1) != '*'
+		Assert.assertFalse(isMatch("aab", "ab"));
+		Assert.assertTrue(isMatch("aa", "a."));
+		
+		// p.charAt(1) == '*'
+		Assert.assertTrue(isMatch("bca", "a*bca"));
+		Assert.assertTrue(isMatch("bbbbca", "b*ca"));		
+		Assert.assertTrue(isMatch("cbbca", ".*ca"));		
+		
+		
+		int[] A = {5, 5, 10, 40, 50, 35};
+		System.out.println(stealMoney(A));
+		System.out.println(maximumSum(A));
 	}
 	
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
+import org.junit.Test;
 import org.w3c.dom.NodeList;
 
 
@@ -23,17 +24,12 @@ import org.w3c.dom.NodeList;
 public class Fifth {
 	// 1. Max number of meetings to attend from a list of meetings
 	// 2. You have a number of meetings (with their start and end times). You need to schedule them using the minimum number of rooms. Return the list of meetings in every room. 
-	public int maxMeetings(List<Interval> intervals) {
-		// http://www.careercup.com/question?id=5142448749674496
-		// https://hellosmallworld123.wordpress.com/2014/05/30/arranging-the-meeting-room/
-		
-		return 0;
-	}
+	// Check special topic for this problem
 	
 	
 	// 2. remove zeros from array [1, 0, 2, 4, 0, 3] -> [1, 4, 3, 2, ?, ?]. return nonZero numbers
 	// Test case: zeroIndex--, points to 0, so must be i <= zeroIndex
-	public static int removeZeros(int[] A) {
+	public int removeZeros(int[] A) {
 		if (A == null || A.length == 0) {
 			return 0;
 		}
@@ -56,7 +52,7 @@ public class Fifth {
 	}
 	
 	// overlap directly
-	public static int removeZerosEasy(int[] A) {
+	public int removeZerosEasy(int[] A) {
 		if (A == null || A.length == 0) {
 			return 0;
 		}
@@ -144,7 +140,7 @@ public class Fifth {
 	
 	
 	// 4. Reverse Linked List
-	public static ListNode reverseLinkedList(ListNode head) {
+	public ListNode reverseLinkedList(ListNode head) {
 		ListNode newHead = null;
 		
 		while (head != null) {
@@ -158,8 +154,8 @@ public class Fifth {
 	}
 	
 	
-	
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		int[] A = {1, 0, 2, 4, 0, 3} ;
 		
 //		removeZeros(A);
@@ -192,7 +188,7 @@ public class Fifth {
 		 Interval(int s, int e) { start = s; end = e; }
 	 }
 	
-	static class ListNode {
+	class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) {

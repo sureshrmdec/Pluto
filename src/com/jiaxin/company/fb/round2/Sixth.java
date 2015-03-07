@@ -1,8 +1,13 @@
 package com.jiaxin.company.fb.round2;
 
 import java.util.ArrayList; 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Stack;
+
+import org.junit.Test;
 
 
 /*
@@ -22,9 +27,60 @@ import java.util.Stack;
  * 
  */
 public class Sixth {
-	// 1. Overlap - sort and compare - nlgn, just force to do it n2
-	// 2. 
+	// 1. Overlap - sort and compare - nlogn
+	public boolean findOverlap(List<Interval> meetings) {
+		if (meetings == null || meetings.size() == 0) {
+			return true;
+		}
+		
+		Collections.sort(meetings, meetingComparator);
+		
+		Interval last = meetings.get(0);
+		for (int i = 1; i < meetings.size(); i++) {
+			Interval current = meetings.get(i);
+			
+			if (last.end > current.start) {
+				return false; 
+			}
+			
+			last = current;
+		}
+		
+		return true;
+	}
 	
+	public Comparator<Interval> meetingComparator = new Comparator<Interval>() {
+		@Override
+		public int compare(Interval o1, Interval o2) {
+			return o1.start - o2.start;
+		}
+	};
+	
+	// 2. Maximum Meeting room
+	public int maximumMeetingRoom(List<Interval> meetings) {
+		if (meetings == null || meetings.size() == 0) {
+			return 0;
+		}
+		
+		Collections.sort(meetings, meetingComparator);
+		PriorityQueue<Integer> heap = new PriorityQueue<Integer>();
+		int room = 1; 
+		
+		heap.add(meetings.get(0).end); 
+		
+		for (int i = 1; i < meetings.size(); i++) {
+			Interval current = meetings.get(i);
+			
+			if (heap.peek() <= current.start) {
+				heap.poll();
+			}
+			
+			heap.offer(current.end);
+		}
+		
+		return heap.size();
+	}
+
 	
 	// 1. Phone String (Jedi) 
 	char[][] map = {{}, {}, {'a','b','c'}, {'d','e','f'}, {'g','h','i'}, {'j','k','l'}, {'m','n','o'}, 
@@ -64,12 +120,12 @@ public class Sixth {
 			return "";
 		}
 		
-		// C:/d1/d2/.././d3
+		// 
 		// /d1/d2
 		Stack<String> stack = new Stack<String>();
 		String[] paths = path.split("/");
 		for (String dir : paths) {
-			if ("..".contains(dir)) {
+			if ("..".equals(dir)) {
 				if (!stack.isEmpty()) {
 					stack.pop();
 				}
@@ -80,10 +136,10 @@ public class Sixth {
 		
 		String result = "";
 		while (!stack.isEmpty()) {
-			result = stack.pop() + result;
+			result = "/" + stack.pop() + result;
 		}
 		
-		return result;
+		return result.contains(":") ? result.substring(1) : result;
 	}
 	
 	
@@ -115,10 +171,25 @@ public class Sixth {
 	}
 
 	
-	// 5. Football
+	// 5. Football see special topic 
+	@Test
+	public void test() {
+		String path1 = "C:/d1/d2/.././d3";
+		String path2 = "/d1/../d2/";
+		
+		System.out.println(simplifyPath(path1));
+		System.out.println(simplifyPath(path2));
+	}
 	
-
-	class ListNode {
+	
+	 class Interval {
+		 int start;
+		 int end;
+		 Interval() { start = 0; end = 0; }
+		 Interval(int s, int e) { start = s; end = e; }
+	 }
+	 
+	 class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) { val = x; next = null; }

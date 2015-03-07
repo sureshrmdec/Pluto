@@ -106,19 +106,49 @@ public class Third {
 			}
 		}
 		
+		while (i < A.length) {
+			result.add(A[i++]);
+		}
+
+		while (j < B.length) {
+			result.add(B[j++]);
+		}
+		
 		return result;
 	}
 	
 	/**
 	 *  Diff = Union - Common
-	 *  1. Hashset. add all elements of A, and then check B's. print not 
+	 *  1. Hashset. add all elements of A, and then check B's. print not in A's. and then do verse. 
 	 * @return
 	 */
 	
 	public List<Integer> findDiff(int[] A, int[] B) {
+		Set<Integer> set = new HashSet<Integer>();
+		List<Integer> result = new ArrayList<Integer>();
+		for (int number : A) {
+			set.add(number);
+		}
 		
+		for (int number : B) {
+			if (!set.contains(number)) {
+				result.add(number);
+			}
+		}
 		
-		return null;
+		// Do verse
+		set.clear();
+		for (int number : B) {
+			set.add(number);
+		}
+		
+		for (int number : A) {
+			if (!set.contains(number)) {
+				result.add(number);
+			}
+		}
+		
+		return result;
 	}
 	
 	// 2. Given a space ship starting at (X0, Y0), knowing that the shaceship can only do S(X,Y) - (X,Y+1), (X-1,Y+1),
@@ -154,8 +184,6 @@ public class Third {
 	    	return node.val;
 	    }
 	}
-	
-	
 	
 	// 2. Look and say (Ninja)
     public String countAndSay(int n) {
@@ -212,11 +240,11 @@ public class Third {
     
     
     // 5. Find the kth Largest element in 2 sorted array of integers (Ninja)  -- median of two sorted array
-    public static int findKthElement(int[] A, int[] B, int k) {    	
+    public int findKthElement(int[] A, int[] B, int k) {    	
     		return findKth(A, 0, B, 0, k);
     }
     
-	private static int findKth(int[] A, int AStart, int[] B, int BStart, int k) {
+	private int findKth(int[] A, int AStart, int[] B, int BStart, int k) {
 		if (AStart >= A.length) {
 			return B[BStart + k - 1];
 		} 
@@ -241,11 +269,13 @@ public class Third {
 
 	@Test
 	public void test() {
-		int[] A1 = {1,3,4,5,7};
+		int[] A1 = {1,3,4,5,7,8};
 		int[] B1 = {2,3,5,6};
 		
 		System.out.println(findCommon(A1, B1));
-		System.out.println(findCommon(A1, B1));
+		System.out.println(findUnion(A1, B1));
+		System.out.println(findUnionSort(A1, B1));
+		System.out.println(findDiff(A1, B1));
 		
 		int[] height = {2,1,5,6,2,3};
 		System.out.println(largestRectangleArea(height));
@@ -253,7 +283,7 @@ public class Third {
 		int[] A = {1,2,3};
 		int[] B = {4,5,6,7,8,9,10};
 		
-		System.out.println(findKthElement(A, B, 4));
+		System.out.println(findKthElement(A, B, 6));
 	}
 	
 	
