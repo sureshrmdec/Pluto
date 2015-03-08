@@ -20,7 +20,7 @@ import org.junit.Test;
 
 public class TaskScheduler {
 	
-	public int taskScheduler(String task, int coolDown) {
+	public int taskScheduler(String task) {
 		int total = 0;
 		int interval = 0;
 		
@@ -81,7 +81,7 @@ public class TaskScheduler {
 	public void test() {
 		String task = "AABABCD";
 		String task2 = "AAABABBCDC";
-		System.out.println(taskScheduler(task2, 2)); //18
+		System.out.println(taskScheduler(task2)); //18
 		System.out.println(taskSchedulerCoolDown(task, 3));
 	}
 }

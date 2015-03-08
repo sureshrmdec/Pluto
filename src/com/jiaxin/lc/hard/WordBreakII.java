@@ -30,12 +30,7 @@ public class WordBreakII {
 		}
 		List<String> result = new ArrayList<String>();
 		
-		int length = s.length();
-		if (length <= 0) {
-			return result;
-		}
-		
-		for (int i = 1; i <= length; i++) {
+		for (int i = 1; i <= s.length(); i++) {
 			String prefix = s.substring(0, i);
 			
 			if (dict.contains(prefix)) {

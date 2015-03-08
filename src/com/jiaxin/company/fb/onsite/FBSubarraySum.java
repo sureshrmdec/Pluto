@@ -12,9 +12,10 @@ import org.junit.Test;
  *  
  * 1. find a contiguous subarray which has the largest sum
  * 2. find two  [1, 3, -1, 2, -1, 2], 7 => [1,3] [2,-1,2] or [1,3,-1,2][2]
- * 3. find k subarray sum to target 
+ * 3. find k subarray sum to target (KSum)
  * 4. maximum subarray difference 
  * 5. product array
+ * 6. continuous subarray sum to target
  *  
  * @author jiashan
  *
@@ -56,6 +57,36 @@ public class FBSubarraySum {
 	    return result;
 	}
 	
+	// FB classic - continious array sum to target
+	public boolean findTarget(int[] A, int target) {
+		if (A == null || A.length == 0) {
+			return false; 
+		}
+		
+		int leftBound = 0;
+		int i = 0;
+		int sum = 0;
+		
+		while (i < A.length) {
+			sum += A[i++];
+			
+			if (sum == target) {
+				return true; 
+			}
+			
+			while (leftBound < i && sum > target) {
+				sum -= A[leftBound];
+				leftBound++;
+				
+				if (sum == target && i > leftBound) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
 	
 	@Test
 	public void test() {
@@ -66,5 +97,8 @@ public class FBSubarraySum {
 			list.add(number);
 		}
 		System.out.println(list);
+		
+		int[] A = {1,2,7,9, 11};
+		System.out.println(findTarget(A, 0));
 	}
 }

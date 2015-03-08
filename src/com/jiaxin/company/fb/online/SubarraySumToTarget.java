@@ -35,17 +35,17 @@ public class SubarraySumToTarget {
 			return false;
 		}
 		
-		int curSum = A[0];
-		int start = 0;
+		int curSum = 0;
+		int leftBound = 0;
 		
-		for (int i = 1; i < A.length; i++) {			
+		for (int i = 0; i < A.length; i++) {			
 			// if exceeds target, remove head. 
-			while (curSum > target && start < i) {
-				curSum -= A[start];
-				start++;
+			while (curSum > target && leftBound < i) {
+				curSum -= A[leftBound];
+				leftBound++;
 			}
 			
-			if (curSum == target && i > start) {
+			if (curSum == target && i > leftBound) {
 				return true;
 			}
 			
@@ -55,6 +55,34 @@ public class SubarraySumToTarget {
 		}
 		
 		return curSum == target;
+	}
+	
+	public boolean findTarget(int[] A, int target) {
+		if (A == null || A.length == 0) {
+			return false; 
+		}
+		
+		int leftBound = 0;
+		int sum = 0;
+		
+		for (int i = 0; i < A.length; i++) {
+			sum += A[i];
+			
+			if (sum == target) {
+				return true; 
+			}
+			
+			while (leftBound < i && sum > target) {
+				sum -= A[leftBound];
+				leftBound++;
+				
+				if (sum == target && i > leftBound) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 	
 	//
@@ -86,13 +114,14 @@ public class SubarraySumToTarget {
 		
 		int[] C = {1, 3, 7, 23};
 		
+		int[] D = {1, 2 -3, 1, 5, -5, 6};
 
 		System.out.println(subarraySum(C, 0));
+		System.out.println(findTarget(B, 3)); // don't support negative numbers
 //		
 //		System.out.println("----------------------");
 //	
-//		System.out.println(zeroSumSubarray(C, 10));
-//		System.out.println(zeroSumSubarray(C, 9));
-//		System.out.println(zeroSumSubarray(C, -7));
+		System.out.println(zeroSumSubarray(D, 0));
+		System.out.println(zeroSumSubarray(C, 3));
 	}
 }
