@@ -12,6 +12,8 @@ import java.util.Set;
  * 1. Two Pointer
  * 2. HashSet
  * 
+ * http://xiangyixie.blogspot.com/2014/11/2sum-3sum-4sum-hashmap-solution-java.html
+ * 
  * @author jiashan
  *
  */
