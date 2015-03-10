@@ -14,6 +14,7 @@ public class LevelOrderAvg {
 		List<List<Integer>> result = new ArrayList<List<Integer>>();
 		helper(result, root, 1);
 	
+		// calculate avg for each level? -- need to talk about
 		return result;
 	}
 	
@@ -99,7 +100,7 @@ public class LevelOrderAvg {
 		
 //		System.out.println((node1));
 		System.out.println(levelOrderAvg(node1));
-		
+		System.out.println(levelOrderAvgDFS(node1));
 	}
 	
 	class TreeNode {
