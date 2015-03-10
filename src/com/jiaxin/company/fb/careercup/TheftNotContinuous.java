@@ -51,38 +51,40 @@ public class TheftNotContinuous {
 	}
 	
 	public List<Integer> stealMoneyPath(int[] A) {
-		List<Integer> path = new ArrayList<Integer>();
-		
-		if (A == null || A.length == 0) {
-			return path;
-		}
+		List<Integer> path1 = new ArrayList<Integer>();
+		List<Integer> path2 = new ArrayList<Integer>();
 		
 		int[] money = new int[A.length];
 		money[0] = A[0];
-		path.add(A[0]);
+		path1.add(A[0]);
 		
 		money[1] = Math.max(A[0], A[1]);
-		path.add(A[1]);
+		path2.add(A[1]);
 		
 		// Could save memory to O(1) with using array. Like fibonacci
+		List<Integer> path3 = new ArrayList<Integer>();
 		for (int i = 2; i < A.length; i++) {
 
 			if (money[i - 2] + A[i] > money[i - 1]) {
 				money[i] = money[i - 2] + A[i];
-				path.add(A[i]);
-				path.remove(path.size() - 1);
+				path3 = new ArrayList<Integer>(path1);
+				path3.add(A[i]);
+				
 			} else {
 				money[i] = money[i - 1];
+				path3 = new ArrayList<Integer>(path2);
 			}
+			
+			path1 = path2;
+			path2 = path3;
 		}
 		
-		System.out.println("max stolen: " + money[A.length - 1]);
-		return path;
+		return path3;
 	}
 	
 	@Test
 	public void test() {
-		int[] A = {4,6,7,1,2,9,12};
+		int[] A = {4,6,7,1,2,9};
 		System.out.println(stealMoney(A));
 		System.out.println(stealMoneyPath(A));
 	}

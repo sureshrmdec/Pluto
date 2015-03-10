@@ -68,19 +68,17 @@ public class FBSubarraySum {
 		int sum = 0;
 		
 		while (i < A.length) {
-			sum += A[i++];
-			
-			if (sum == target) {
-				return true; 
+			if (sum < target) {
+				sum += A[i++];
 			}
 			
 			while (leftBound < i && sum > target) {
 				sum -= A[leftBound];
 				leftBound++;
-				
-				if (sum == target && i > leftBound) {
-					return true;
-				}
+			}
+			
+			if (sum == target && i > leftBound) {
+				return true;
 			}
 		}
 		

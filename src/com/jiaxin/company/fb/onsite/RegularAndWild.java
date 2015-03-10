@@ -2,13 +2,17 @@ package com.jiaxin.company.fb.onsite;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.omg.CORBA.PUBLIC_MEMBER;
 
 /**
  * 1. Regular Expression (Recursive + DP)
  * 2. Wild Matching
  * 
  * abc .*c -> true 
+ * 
+ * 3. regular expression only contains *.
  * 
  * @author jiashan
  * 
@@ -99,5 +103,51 @@ public class RegularAndWild {
 		
 		System.out.println(isMatchRecursive("aaa", "ab*a*c*a"));
 		System.out.println(isMatchDP("aaa", "ab*a*c*a"));
+	}
+	
+	public boolean isMatchOnlyStar(String s, String p) {
+		if (p.isEmpty()) {
+			return s.isEmpty();
+ 		}
+		
+		if (p.length() == 1 || p.charAt(1) != '*') {
+			if (s.length() < 1) {
+				return false;
+			}
+			
+			if (s.charAt(0) != p.charAt(0)) {
+				return false;
+			}
+			
+			return isMatchOnlyStar(s.substring(1), p.substring(1));
+		} else {
+			if (isMatchOnlyStar(s, p.substring(2))) {
+				return true;
+			}
+			
+			int i = 0;
+			while ((i + 1) < s.length() && s.charAt(i) == p.charAt(0)) {
+				if (isMatchOnlyStar(s.substring(i + 1), p.substring(2))) {
+					return true; 
+				}
+				i++;
+			}
+		}
+		
+		return false; 
+	}
+	
+	@Test
+	public void testSingleStar() {
+		Assert.assertTrue(isMatchOnlyStar("aab", "aab"));
+		Assert.assertTrue(isMatchOnlyStar("aaab", "a*b"));
+		Assert.assertFalse(isMatchOnlyStar("aac", "a*b"));
+		Assert.assertFalse(isMatchOnlyStar("aabc", "aab"));
+		Assert.assertFalse(isMatchOnlyStar("aa", "aab"));
+		Assert.assertTrue(isMatchOnlyStar("a", "b*a"));
+		Assert.assertTrue(isMatchOnlyStar("a", "a*a"));
+		Assert.assertTrue(isMatchOnlyStar("ab", "aa*b*b"));
+		Assert.assertTrue(isMatchOnlyStar("", "a*a*a*a*"));
+		Assert.assertFalse(isMatchOnlyStar("cb", "a*b"));
 	}
 }
