@@ -63,7 +63,7 @@ public class First {
 	// http://www.cnblogs.com/fartherfuture/p/3495899.html
 	// work on memory limit or stream data. make sure equal probability when we don't know sample size  
 	
-	public static ListNode randomSelect(ListNode head) {
+	public ListNode randomSelect(ListNode head) {
 		if (head == null) {
 			return null;
 		}
@@ -73,12 +73,11 @@ public class First {
 		
 		while (head.next != null) {
 			double probability = Math.random();
-			if (probability < (double)1 / (n + 1)) {
+			if (probability < (double)1 / ++n ) {
 				candidate = head.next;
 			}
 			
 			head = head.next;
-			n++;
 		}
 		
 		return candidate;

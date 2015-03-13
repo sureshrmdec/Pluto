@@ -62,7 +62,7 @@ public class RemoveComment {
 		String data2 = "Hello, /*meetqun world \n java */ or python"; // /* */ cross line
 		String data3 = "Hello, /*meetqun world \n java or python";    // only left /*
 		String data4 = "Hello, meetqun world \n java */ or python";   // only right */
-		String data5 = "Hello, /*meetqun /*world \n java */ or*/ python";   // overlap
+		String data5 = "Hello, /*meetqun /*world \n java */ or python";   // overlap
 		// overlap like /*aaa /* bb */ 
 		// multi comment in one line /*aa*/bbb/*cc*/
 				

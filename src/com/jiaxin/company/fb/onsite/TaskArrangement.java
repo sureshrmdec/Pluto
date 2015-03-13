@@ -1,7 +1,10 @@
 package com.jiaxin.company.fb.onsite;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 import org.junit.Test;
 
@@ -39,6 +42,49 @@ public class TaskArrangement {
 		}
 	}
 
+    public boolean jobSchedule(Map<Integer, List<Integer>> deps, int n, int[] result) {
+    	Map<Integer, List<Integer>> dict = new HashMap<Integer, List<Integer>>();
+    	int[] indegree = new int[n + 1];
+    	
+    	for (Map.Entry<Integer, List<Integer>> entry : deps.entrySet()) {
+    		int jobId = entry.getKey();
+    		
+    		for (int id : entry.getValue()) {
+    			if (!dict.containsKey(id)) dict.put(id, new ArrayList<Integer>());
+    			dict.get(id).add(jobId);
+    			indegree[jobId]++;
+    		}
+    	}
+    	
+    	// reason use stack is because it could follow the path. list also works 
+    	Stack<Integer> stack = new Stack<Integer>();
+    	for (int i = 0; i <= n; i++) {
+    		if (indegree[i] == 0) stack.push(i);
+    	}
+    	
+    	for (int i = 0; i < n; i++) {
+    		// if there's valid sequence, sequence length is n, every loop should have a task. 
+    		if (stack.isEmpty()) {
+    			return false;
+    		}
+    		
+    		int id = stack.pop(); 
+    		result[i] = id;
+    		
+    		if (dict.containsKey(id)) {
+    			for (int jobId : dict.get(id)) {
+    				indegree[jobId] --; 
+    				if (indegree[jobId] == 0) {
+    					stack.push(jobId);
+    				}
+    			}
+    		}
+    		
+    	}
+    	
+    	return true;
+    }
+	
 
 	@Test
 	public void test() {
@@ -57,6 +103,8 @@ public class TaskArrangement {
 		
 		System.out.println(tasks);
 		System.out.println(rightOrder(tasks));
+		
+		
 	}
 	
 	class Task {

@@ -27,7 +27,7 @@ public class Fifth {
 	
 	
 	// 2. remove zeros from array [1, 0, 2, 4, 0, 3] -> [1, 4, 3, 2, ?, ?]. return nonZero numbers
-	// Test case: zeroIndex--, points to 0, so must be i <= zeroIndex
+	// Test case: zeroIndex--, points to 0, so must be i <= zeroIndex. if want to return non-zero size, <=. if just remove. no return. = is enough.
 	public int removeZeros(int[] A) {
 		if (A == null || A.length == 0) {
 			return 0;
@@ -87,7 +87,7 @@ public class Fifth {
 	}
 	
 	// Non-Recursive way -- use extra space 
-	public void flatternIteration(TreeNode root) {
+	public TreeNode flatternIteration(TreeNode root) {
 		Stack<TreeNode> stack = new Stack<TreeNode>();
 		TreeNode node = root;
 		
@@ -106,6 +106,8 @@ public class Fifth {
 			
 			node = node.right;
 		}
+		
+		return root;
 	}
 	
 	
@@ -176,6 +178,17 @@ public class Fifth {
 		while (head != null) {
 			System.out.println(head.val);
 			head = head.next;
+		}
+		
+		
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2); root.right = new TreeNode(3);
+		root.left.right = new TreeNode(4); root.right.left = new TreeNode(5);
+		
+		flatternIteration(root);
+		
+		while (root != null) {
+			System.out.print(root.val + " -> "); root = root.right;
 		}
 	}
 	
