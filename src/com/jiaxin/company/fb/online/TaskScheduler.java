@@ -14,6 +14,15 @@ import org.junit.Test;
  * 
  * BAB -> not good but actually is good because AB_AB that's really
  * 
+ * 
+ * // [1,2,1,2], N=3
+ * // 1,2,1,2 --> 4, 
+ * // 1,2,_,_,1,_,_,2--> 6
+ * 
+ * // [1,2,1,2], N=2
+ * // 1,2,1,2 --> 4, 
+ * // 1, 2, _, 1,2--> 5
+ * 
  * @author jiashan
  *
  */

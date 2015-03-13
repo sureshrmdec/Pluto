@@ -148,5 +148,4 @@ public class Climbstairs {
 		System.out.println(climbStairsSolutions(5));
 		climbStairsPrintSolutions(5);
 	}
-    
 }

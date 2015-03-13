@@ -6,6 +6,15 @@ import java.util.Scanner;
 
 import org.junit.Test;
 
+/**
+ * Given a function that reads one line a time from a file and returns the line to you. 
+ * The line contains comment sign as of "/* *" or even nested signs. 
+ * Note the sign doesn't have to be paired in one single line. 
+ * Write a function to append all these lines and return them as one single string without comments.
+ * 
+ * @author jiashan
+ *
+ */
 public class RemoveComment {
 	
 	public void removeComment(InputStream stdin) {
