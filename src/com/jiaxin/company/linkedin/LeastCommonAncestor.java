@@ -21,6 +21,12 @@ import org.junit.Test;
  *    2, 5 => 1
  *    2, 9 => 3
  *    ==========
+ *    
+ * Parent Pointer way O(1) space:
+ * 1. find depth from two nodes. 
+ * 2. more deeper node: go upper to make same height with the other node
+ * 3.    
+ *    
  */
 public class LeastCommonAncestor {
 	// parent node way 
