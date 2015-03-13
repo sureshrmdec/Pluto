@@ -140,10 +140,16 @@ public class Fourth {
 			return null;
 		}
 		
-		if (strs[i].endsWith("#")) {
+//		if (strs[i].endsWith("#")) {
+//			i++;
+//			return null;
+//		}
+		
+		if (strs[i].equals("#")) {
 			i++;
 			return null;
 		}
+		
 		
 		TreeNode node = new TreeNode(Integer.parseInt(strs[i++])); 
 		node.left = deserializeHelper(strs);

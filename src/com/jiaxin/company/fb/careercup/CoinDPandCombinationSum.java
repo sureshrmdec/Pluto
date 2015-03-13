@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  */
 public class CoinDPandCombinationSum {
-
+	// 1. Coin DP
 	
 	// 2. Combination Sum - Recursive
 	public List<List<Integer>> combinationSum(int[] num, int target) {
@@ -49,6 +49,7 @@ public class CoinDPandCombinationSum {
 	    }
 	}
 
+	// Better to use target - num, do not need to calculate again. 
 	public int getSum(List<Integer> list) {
 	    int sum = 0;
 	    for (int i = 0; i < list.size(); i++) {

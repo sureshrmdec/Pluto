@@ -1,16 +1,16 @@
 package com.jiaxin.company.fb.onsite;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.SpecialAction;
-
 import org.junit.Assert;
 import org.junit.Test;
-import org.omg.CORBA.PUBLIC_MEMBER;
 
 /**
  * 1. Regular Expression (Recursive + DP)
- * 2. Wild Matching
+ * abc .*c -> true
  * 
- * abc .*c -> true 
+ * 2. Wild Matching
+ * Diff is * neans any sequence of characters(zero or more in regular expression). not rely on previous. 
+ * aab c*a*b -> false. because c can't be elminated here.  
+ * 
  * 
  * 3. regular expression only contains *.
  * 
@@ -95,15 +95,53 @@ public class RegularAndWild {
 		return match[m][n];
 	}
 	
-	
 	@Test
-	public void test() {
+	public void testRegular() {
 		System.out.println(isMatchRecursive("aab", "c*a*b"));
 		System.out.println(isMatchDP("aab", "c*a*b"));
 		
 		System.out.println(isMatchRecursive("aaa", "ab*a*c*a"));
 		System.out.println(isMatchDP("aaa", "ab*a*c*a"));
 	}
+	
+	public boolean wildMatch(String s, String p) {
+		if (p.length() == 0) {
+			return s.length() == 0;
+		}
+		
+		boolean[] result = new boolean[s.length() + 1];
+		result[0] = true;
+		
+		for (int j = 0; j < p.length(); j++) {
+			if (p.charAt(j) != '*') {
+				for (int i = s.length() - 1; i >= 0; i--) {
+					result[i + 1] = result[i] && (p.charAt(j) == '?' || s.charAt(i) == p.charAt(j));
+				}
+			} else {
+				int i = 0;
+				while (i <= s.length() && !result[i]) {
+					i++;
+				}
+				
+				for (; i <= s.length(); i++) {
+					result[i] = true;
+				}
+			}
+			
+			result[0] = result[0] && p.charAt(j) == '*';
+		}
+		
+		return result[s.length()];
+	}
+	
+	@Test
+	public void testWildCard() {
+//		System.out.println(wildMatch("aa", "*"));  // true
+		System.out.println(wildMatch("aa", "a*")); // true
+		System.out.println(wildMatch("aab", "c*a*b"));
+	}
+	
+	
 	
 	public boolean isMatchOnlyStar(String s, String p) {
 		if (p.isEmpty()) {
