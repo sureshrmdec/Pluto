@@ -79,6 +79,31 @@ public class Eighth {
 		return result;
 	}
 	
+	public List<List<Integer>> subsetIIRemoveDup(int[] A) {
+	    List<List<Integer>> result = new ArrayList<List<Integer>>();
+	    
+	    result.add(new ArrayList<Integer>());
+	    
+	    Arrays.sort(A);
+	    int lastSize = 0;
+	    
+	    for (int i = 0; i < A.length; i++) {
+	        int size = result.size();
+
+	        int j = (i != 0) && (A[i] == A[i - 1]) ? size - lastSize : 0; 
+	        lastSize = 0;
+	        
+	        for (; j < size; j++) {
+	            List<Integer> list = new ArrayList<Integer>(result.get(j));
+	            list.add(A[i]);
+	            result.add(list);
+	            lastSize++;
+	        }
+	    }
+	    
+	    return result;
+	}
+	
 
 	/**************************************************************************/
 	// 2. Phone number words-- Test case [""] -> [""] but not [], digits.length == 0 can't add into first parameter validation
@@ -426,6 +451,9 @@ public class Eighth {
 		int[] B = {1, 2, 3};
 		System.out.println(subset(B));
 		System.out.println(subSetIteration(B));
+		
+		int[] C = {1,2,2};
+		System.out.println(subsetIIRemoveDup(C));
 	}
 	
 	class ListNode {

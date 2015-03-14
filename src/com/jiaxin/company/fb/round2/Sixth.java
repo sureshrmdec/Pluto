@@ -118,7 +118,7 @@ public class Sixth {
 	public String simplifyPath(String path) {
 		if (path == null || path.length() == 0) {
 			return "";
-		}
+		}	
 		
 		// 
 		// /d1/d2

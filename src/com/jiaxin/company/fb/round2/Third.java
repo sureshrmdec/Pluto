@@ -245,11 +245,11 @@ public class Third {
     }
     
 	private int findKth(int[] A, int AStart, int[] B, int BStart, int k) {
-		if (AStart >= A.length) {
+		if (AStart == A.length) {
 			return B[BStart + k - 1];
 		} 
 		
-		if (BStart >= B.length) {
+		if (BStart == B.length) {
 			return A[AStart + k - 1];
 		}
 		

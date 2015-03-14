@@ -43,6 +43,7 @@ public class Second {
 		
 		if (level == 1) {
 			System.out.print(root.val + " ");
+			return;
 		}
 		
 		print(root.left, level - 1);
