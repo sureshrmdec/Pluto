@@ -41,7 +41,7 @@ public class TaskScheduler {
 				int distance = i + interval - dict.get(tasks[i]); // find distance with last same char.
 				
 				if (distance <= coolDown) {
-					int curInterval = coolDown + 1 - (i + interval - dict.get(tasks[i]));
+					int curInterval = coolDown + 1 - distance;
 					interval += curInterval;  // cool down time
 					total += curInterval + 1; // 1 means that task 
 				} else {

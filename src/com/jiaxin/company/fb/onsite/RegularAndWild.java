@@ -78,7 +78,7 @@ public class RegularAndWild {
 						continue;
 					} 
 					
-					int k = i - 1; // change to index. 
+					int k = i; // change to index. 
 					
 					// k - 1 means
 					while (k > 0 && (s.charAt(k - 1) == p.charAt(j - 2) || p.charAt(j - 2) == '.')) {

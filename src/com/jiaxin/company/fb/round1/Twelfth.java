@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
 
+import org.junit.Test;
+
 
 /*
  * Phone: 
@@ -180,13 +182,54 @@ public class Twelfth {
 		return true;
 	}
 
+	// http://www.programcreek.com/2013/03/leetcode-palindrome-partitioning-java/
+	public List<String> palindromeDP(String s) {
+		List<String> result = new ArrayList<String>();
+		
+		if (s == null) {
+			return result;
+		}
+		
+		// "" is palindrome ? I think, need to clarify
+		if (s.length() <= 1) {
+			result.add(s);
+			return result;
+		}
+		
+		int length = s.length();
+		int[][] table = new int[length][length];
+		
+		for (int l = 1; l <= length; l++) {   /// l means length of substring. 
+			for (int i = 0; i < s.length(); i++) {
+				int j = i + l - 1;
+				
+				if (s.charAt(i) == s.charAt(j)) {
+					if (l == 1 || l == 2) {
+						table[i][j] = 1; 
+					} else {
+						table[i][j] = table[i + 1][j - 1];
+					}
+					
+					if (table[i][j] == 1) {
+						result.add(s.substring(i, j + 1));
+					}
+				} else {
+					table[i][j] = 0;
+				}
+			}
+		}
+		
+		
+		return result;
+	}
 	
 	/***********************************************************************************************************/
 	// 3. Max Intervals (Jedi) find the interval overlap others more? [0,5] [2,9] [8,10] [6,9] -> [8,10] 
 	// visiting the endpoints in order and counting the nesting level 
 	// [0,5 ] [2,10] [6,9] [8,11]
 	//http://www.careercup.com/question?id=15465824
-	//http://codeanalysis111.blogspot.com/2014/11/facebook-interval-problem.html
+	//http://www.mitbbs.com/article_t/JobHunting/32604499.html
+	// {left, right, weight} find most weight
 	
 	
 	
@@ -252,9 +295,10 @@ public class Twelfth {
 		
 	}
 
-
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		System.out.println(countAndSay(6));
+		System.out.println(partition("aaa"));
 	}
 	
 	class UndirectedGraphNode {

@@ -18,7 +18,7 @@ import java.util.PriorityQueue;
  * 2. Number permutations greater than the given number  (Ninja)  -> Next Permutation
  * 3. Merge K Lists (Ninja)
  * 4. Strstr (Ninja)
- * 5. Find all substring that are palindromes. (Ninja)
+ * 5. Find all substring that are palindromes. (Ninja) - manacher's algorithm. O(n) find length
  * 6. balance parentheses (Ninja) stack ? two pointer?
  * 7. Phone book, number matching with wildcards (Ninja) trie tree?
  * 8. Git Bisect (Ninja)

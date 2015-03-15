@@ -1,5 +1,7 @@
 package com.jiaxin.company.fb.round1;
 
+import java.util.Set;
+
 import com.jiaxin.company.fb.round1.Twelfth.ListNode;
 import com.jiaxin.company.fb.round1.Twelfth.TreeNode;
 
@@ -19,7 +21,61 @@ import com.jiaxin.company.fb.round1.Twelfth.TreeNode;
  */
 public class Nighth {
 
+	public ListNode swapPairs(ListNode head) {
+		if (head == null) {
+			return null;
+		}
+		
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
+		ListNode lastNode = dummy;
+		
+		while (head != null && head.next != null) {
+			ListNode temp = head.next.next;
+			head.next.next = lastNode.next;
+			lastNode.next = head.next;
+			head.next = temp;
+			
+			lastNode = head;
+			head = head.next;
+		}
+		
+		return dummy.next;
+	}
 	
+	public boolean wordBreak(String s, Set<String> dict) {
+		if (s == null || dict == null) {
+			return false;
+		}
+		
+		int maxLength = getMaxLength(dict);
+		boolean[] canSegment = new boolean[s.length()];
+		canSegment[0] = true; 
+		
+		for (int i = 1; i <= s.length(); i++) {
+			for (int j = 1; j <= i && j < maxLength; j++) {
+				String word = s.substring(i - j, i);
+				if (canSegment[j] && dict.contains(word)) {
+					canSegment[i] = true;
+					break;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	private int getMaxLength(Set<String> dict) {
+		int length = 0;
+		for (String s: dict) {
+			length = Math.max(length, s.length());
+		}
+		
+		return length;
+	}
+
+
 	class ListNode {
 		int val;
 		ListNode next;

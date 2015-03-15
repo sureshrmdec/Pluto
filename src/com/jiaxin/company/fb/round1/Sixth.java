@@ -1,5 +1,7 @@
 package com.jiaxin.company.fb.round1;
 
+import org.junit.Test;
+
 
 /*
  * Phone:
@@ -18,7 +20,11 @@ package com.jiaxin.company.fb.round1;
  */
 public class Sixth {
 	// 1. Git bisect
-	public static int gitBisect(int n) {
+	public int gitBisect(int n) {
+		if (n <= 0) {
+			throw new IllegalArgumentException("can not be true");
+		}
+		
 		int start = 1;
 		int end = n;
 		
@@ -28,19 +34,15 @@ public class Sixth {
 			if (isBadVersion(mid)) {
 				end = mid;
 			} else {
-				if (isBadVersion(mid + 1)) {
-					return mid + 1;
-				} else {
-					start = mid;
-				}
+				start = mid;
 			}
 		}
 		
-		if (!isBadVersion(start - 1) && isBadVersion(start)) {
+		if (isBadVersion(start)) {
 			return start;
 		}
 		
-		if (!isBadVersion(end - 1) && isBadVersion(end)) {
+		if (isBadVersion(end)) {
 			return end;
 		}
 		
@@ -48,7 +50,7 @@ public class Sixth {
 	}
 	
 	// API function
-	public static boolean isBadVersion(int k) {
+	public boolean isBadVersion(int k) {
 		return k >= 1;
 	}
 	
@@ -84,8 +86,22 @@ public class Sixth {
 		}
 	}
 
-	public static void main(String[] args) {
+	@Test
+	public void test() {
 		System.out.println(gitBisect(2));
+		System.out.println(gitBisect(10));
+		
+		TreeNode root = new TreeNode(1);
+		root.left = new TreeNode(2);
+		root.left.left = new TreeNode(3);
+		root.left.left.left = new TreeNode(3);
+		root.left.right = new TreeNode(3);
+		root.left.right.right = new TreeNode(3);
+		root.left.right.right.right = new TreeNode(3);
+		root.right = new TreeNode(4);
+		
+		
+		System.out.println(longestPath(root));
 	}
 	
 	
