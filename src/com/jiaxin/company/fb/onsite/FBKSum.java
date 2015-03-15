@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * 1. 2Sum
  * 2. 3Sum
- * 3. KSum Iterative
+ * 3. KSum Recursive
  * 4. KSum DP?
  * 
  * Given n distinct positive integers, integer k (k <= n) and a number target.
@@ -123,14 +123,25 @@ public class FBKSum {
 					start++;
 				} else {
 					end--;
-				}
+				};
 			}
 		}
 
 		return result;
 	}
 	
+	public List<List<Integer>> threeSumHashTable(int[] num) {
+		
+		
+		return null;
+	}
+	
 	/**********************************************************************************************/
+	public int kSumRecursion(int[] A, int k, int target) {
+		return target;
+		
+	}
+	
 	
 	/**********************************************************************************************/
     public int kSumDP(int A[], int k, int target) {

@@ -5,11 +5,13 @@ import org.junit.Test;
 public class PermutationSequence {
 	
 	public String getPermutation(int n, int k) {
+		// translate n to num[] for future calculation
 		int[] num = new int[n];
 		for (int i = 0; i < num.length; i++) {
 			num[i] = i + 1;
 		}
 		
+		// Next Permutation thought
 		for (int l = 0; l < k - 1; l++) {
 			int i = num.length - 2;
 			
@@ -32,6 +34,7 @@ public class PermutationSequence {
 			reverse(num, i + 1);
 		}
 		
+		// construct num[] sequence to String
 		String result = "";
 		for(int i: num) {
 			result += i;
