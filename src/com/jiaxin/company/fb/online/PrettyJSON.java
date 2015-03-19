@@ -1,8 +1,5 @@
 package com.jiaxin.company.fb.online;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 /**
@@ -75,32 +72,6 @@ public class PrettyJSON {
 		return c == '}' || c == ']';	
 	}
 	
-	public List<List<Integer>> treePath(TreeNode root) {  // same to path sumII
-		List<List<Integer>> result = new ArrayList<List<Integer>>();
-		List<Integer> list = new ArrayList<Integer>();
-		
-		pathHelper(result, list, root);
-		
-		return result;
-	}
-	
-	private void pathHelper(List<List<Integer>> result, List<Integer> list, TreeNode root) {
-		if (root == null) {
-			return;
-		}
-		
-		if (root.left == null && root.right == null) {
-			list.add(root.val);
-			result.add(new ArrayList<Integer>(list));
-			list.remove(list.size() - 1);
-			return;
-		}
-		
-		list.add(root.val);
-		pathHelper(result, list, root.left);
-		pathHelper(result, list, root.right);
-		list.remove(list.size() - 1);
-	}
 
 	@Test
 	public void test() {
@@ -108,19 +79,7 @@ public class PrettyJSON {
 				"'popup':{'menuitem':[{'value':'new','onclick':'CreateNewDoc()'}," +
 				"{'value':'Open','onclick':'OpenDoc()'}]}}}";
 		
-		System.out.println(prettyJSON(input));
-		
-		TreeNode node5 = new TreeNode(5);
-		TreeNode node4 = new TreeNode(4);
-		TreeNode node8 = new TreeNode(8);
-		TreeNode node11 = new TreeNode(11);
-		TreeNode node7 = new TreeNode(7);
-		TreeNode node2 = new TreeNode(2);
-		
-		node5.left = node4; node5.right = node8;
-		node4.left = node11; node11.left = node7; node11.right = node2;
-		
-		System.out.println(treePath(node5));
+		System.out.println(prettyJSON(input));		
 	}
 	
 	class TreeNode {
