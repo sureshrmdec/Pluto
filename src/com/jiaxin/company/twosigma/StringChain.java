@@ -1,13 +1,16 @@
 package com.jiaxin.company.twosigma;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
+
+
+import org.junit.Test;
 
 
 /**
@@ -21,71 +24,54 @@ import java.util.Set;
  */
 public class StringChain {
 	
+	Map<String, Integer> distance = new HashMap<String, Integer>();
 	public int stringChainLength(Set<String> words) {
+		int maxLength = Integer.MIN_VALUE;
 		
-		Map<String, List<String>> map = new HashMap<String, List<String>>();
-		Map<String, Integer> distance = new HashMap<String, Integer>();
-		
-		
-		int max = 0;
-		int min = Integer.MAX_VALUE;
-		String longestWord = ""; 
-		for (String word : words) {
-			if (word.length() > max) {
-				longestWord = word;
-				max = word.length();
+		List<String> toFind = new ArrayList<String>(words);
+		Collections.sort(toFind, new Comparator<String>() {
+			@Override
+			public int compare(String o1, String o2) {
+				return o2.length() - o1.length();
 			}
-			min = Math.min(min, word.length());
+		});
+		
+		for (int i = 0; i < toFind.size(); i++) {
+			int length = helper(toFind.get(i), words); 
+			maxLength = Math.max(maxLength, length);
 		}
 		
-		// start with longest do not make sure.. 
-		
-		Queue<String> queue = new LinkedList<String>();
-		queue.offer(longestWord);
-		int level = 1;
-		
-		for (String word : words) {
-			map.put(word, new ArrayList<String>());
-		}
-		
-		
-		while (!queue.isEmpty()) {
-			int size = queue.size();
-			
-			for (int i = 0; i < size; i++) {
-				String word = queue.poll();
-				
-				List<String> available = translate(word, words, queue);
-				for (String next: available) {
-					map.get(next).add(word);
-					
-					if (distance.containsKey(next)) {
-						distance.put(next, distance.get(word) + 1);
-						queue.offer(next);
-					}
-				}
-			}
-			
-			
-			
-			
-			
-
-			
-			
-		}
-		
-		return 0;
+		return maxLength;		
 	}
 	
-	
-	
-	private List<String> translate(String word, Set<String> dict, Queue<String> queue) {
+	// get max Length of a word.
+	private int helper(String word, Set<String> words) {
+		int level = 1;
+		
+		if (distance.containsKey(word)) {
+			return distance.get(word);
+		} 
+					
+		List<String> available = translate(word, words);
+		if (!available.isEmpty()) {
+			int max = Integer.MIN_VALUE;
+			for (String next: available) {
+				max =  Math.max(max, helper(next, words));
+			}
+			
+			level += max;
+		} 
+		
+		distance.put(word, level); 
+		return distance.get(word);
+	}
+
+	// get available word list in dictionary
+	private List<String> translate(String word, Set<String> dict) {
 		List<String> list = new ArrayList<String>();
 		
 		for (int i = 0; i < word.length(); i++) {
 			String temp = word.substring(0, i) + word.substring(i + 1);
-			
 			if (dict.contains(temp)) {
 				list.add(temp);
 			}
@@ -95,16 +81,18 @@ public class StringChain {
 	}
 
 
-
-	public List<String> stringChain(List<String> words) {
-		Map<String, Integer> map = new HashMap<String, Integer>(); 
+	@Test
+	public void test() {
+		Set<String> dict = new HashSet<String>();
+		dict.add("a");
+		dict.add("b");
+		dict.add("ba");
+		dict.add("bca");
+		dict.add("bda");
+		dict.add("bdca");
 		
-		List<String> chain = new ArrayList<String>();
-		
-		
-		return null;
+		System.out.println(stringChainLength(dict));
 	}
-	
 	
 	
 }
