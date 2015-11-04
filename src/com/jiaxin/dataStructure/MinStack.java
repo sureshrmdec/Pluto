@@ -7,7 +7,7 @@ public class MinStack{
 	Stack<Integer> minStack = new Stack<Integer>();
 	
 	public void push(int value) {
-		if (!minStack.isEmpty() && value <= getMin()) {
+		if (minStack.isEmpty() || value <= getMin()) {
 			minStack.push(value);
 		}
 		

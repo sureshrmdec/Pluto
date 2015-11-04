@@ -8,27 +8,38 @@ import org.junit.Test;
 
 public class SinkZeros {
 	public void sinkTree(TreeNode root) {
-	        if(root == null) return;
-	        if(root.val == 0) {
-	            TreeNode toSwap = findSwapNode(root);
-	            if(toSwap != null) {
-	                int temp = root.val;
-	                root.val = toSwap.val;
-	                toSwap.val = temp;
-	            } else return;
-	        }
-	        sinkTree(root.left);
-	        sinkTree(root.right);
-	    }
+        if(root == null) {
+        	return;
+        }
+        
+        if(root.val == 0) {
+            TreeNode toSwap = findSwapNode(root);
+            if(toSwap != null) {
+                int temp = root.val;
+                root.val = toSwap.val;
+                toSwap.val = temp;
+            } else return;
+        }
+        
+        sinkTree(root.left);
+        sinkTree(root.right);
+	}
 	
 	private TreeNode findSwapNode(TreeNode root) {
-		if (root == null)
+		if (root == null) {
 			return null;
-		if (root.val != 0)
+		}
+			
+		if (root.val != 0) {
 			return root;
+		}
+			
 		TreeNode ret = findSwapNode(root.left);
-		if (ret != null)
+
+		if (ret != null) {
 			return ret;
+		}
+			
 		return findSwapNode(root.right);
 	}
 	

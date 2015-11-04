@@ -21,7 +21,8 @@ import org.junit.Test;
  * http://agooglehacker.blogspot.com/2013/10/2sum-3sum-4sum-ksum.html
  * http://www.cnblogs.com/yuzhangcmu/p/4279676.html
  * 
- * 
+ * 這道題要小心，我面過，我當時算法複雜度是大概o(n sqrt(n))
+ * 因為 dp(i,j)  要滿足  2*j<=  sqrt(9+8i)-1
  * 
  * @author jiashan
  *

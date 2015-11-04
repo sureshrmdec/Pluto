@@ -1,12 +1,14 @@
 package com.jiaxin.company.twosigma;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Set;
 
 
@@ -29,6 +31,7 @@ public class StringChain {
 		int maxLength = Integer.MIN_VALUE;
 		
 		List<String> toFind = new ArrayList<String>(words);
+		
 		Collections.sort(toFind, new Comparator<String>() {
 			@Override
 			public int compare(String o1, String o2) {
@@ -37,7 +40,7 @@ public class StringChain {
 		});
 		
 		for (int i = 0; i < toFind.size(); i++) {
-			int length = helper(toFind.get(i), words); 
+			int length = helper(toFind.get(i), toFind); 
 			maxLength = Math.max(maxLength, length);
 		}
 		
@@ -45,7 +48,7 @@ public class StringChain {
 	}
 	
 	// get max Length of a word.
-	private int helper(String word, Set<String> words) {
+	private int helper(String word, List<String> words) {
 		int level = 1;
 		
 		if (distance.containsKey(word)) {
@@ -67,7 +70,7 @@ public class StringChain {
 	}
 
 	// get available word list in dictionary
-	private List<String> translate(String word, Set<String> dict) {
+	private List<String> translate(String word, List<String> dict) {
 		List<String> list = new ArrayList<String>();
 		
 		for (int i = 0; i < word.length(); i++) {
@@ -82,17 +85,39 @@ public class StringChain {
 
 
 	@Test
-	public void test() {
+	public void test1() {
+//		Set<String> dict = new HashSet<String>() {{add("a");  add("ab"); add("abc"); add("abd");}};
 		Set<String> dict = new HashSet<String>();
-		dict.add("a");
-		dict.add("b");
-		dict.add("ba");
-		dict.add("bca");
-		dict.add("bda");
-		dict.add("bdca");
+		Scanner scanner = new Scanner(System.in);
+		while (scanner.hasNextLine()) {
+			dict.add(scanner.nextLine());
+		}
 		
 		System.out.println(stringChainLength(dict));
 	}
 	
+	@Test
+	public void test2() {
+		Set<String> dict = new HashSet<String>() {{add("a");  add("ab"); add("abc"); add("abd");}};
+		System.out.println(stringChainLength(dict));
+	}
+	
+	@Test
+	public void test3() {
+		Set<String> dict = new HashSet<String>() {{add("x"); add("xy"); add("xyz"); add("abd"); add("abcd");}};
+		System.out.println(stringChainLength(dict));
+	}
+	
+	@Test
+	public void test4() {
+//		Set<String> dict = new HashSet<String>() {{add("a"); add("b"); add("ba"); add("bca"); add("bda"); add("bdca");}};
+		Set<String> dict = new HashSet<String>();
+		Scanner scanner = new Scanner(System.in);
+		while (scanner.hasNextLine()) {
+			dict.add(scanner.nextLine());
+		}
+		
+		System.out.println(stringChainLength(dict));
+	}
 	
 }
