@@ -13,8 +13,31 @@ package com.diorsding.advance.datastructure;
 public class Heapify {
 
 	public void heapify(int[] A) {
-		
-		
+		for (int i = A.length / 2; i >= 0; i--) {
+			shiftDown(A, i);
+		}
     }
-	
+
+	private void shiftDown(int[] A, int k) {
+		while (k < A.length) {
+			int smallest = k;
+			if (k * 2 + 1 < A.length && A[k * 2 + 1] < A[smallest]) {
+				smallest = k * 2 + 1;
+			}
+			
+			if (k * 2 + 2 < A.length && A[k * 2 + 2] < A[smallest]) {
+				smallest = k * 2 + 2;
+			}
+			
+			if (k == smallest) {
+				break;
+			}
+			
+			int temp = A[smallest];
+			A[smallest] = A[k];
+			A[k] = temp;
+			
+			k = smallest;
+		}
+	}
 }
