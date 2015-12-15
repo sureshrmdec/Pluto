@@ -26,11 +26,10 @@ public class SlidingWindowMedian {
 			if (i != 0) {
 				if (nums[i] > median) {
 					minHeap.add(nums[i]);
-				} {
+				} else {
 					maxHeap.add(nums[i]);
 				}
 			}
-			
 			
 			if (i >= k) {
 				if (median == nums[i - k]) {

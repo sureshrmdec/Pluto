@@ -1,5 +1,9 @@
 package com.jiaxin.lc.newProblem;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 import org.junit.Test;
 
 /**
@@ -9,24 +13,44 @@ import org.junit.Test;
  * 2 
  */
 public class UpsideDownBinaryTree {
-    public TreeNode upsideDownBinaryTree(TreeNode root) {
-		TreeNode node = root;
-		TreeNode parent = null;
-		TreeNode parentRight = null;
+	int sum = 0;
+	public int sumNumbers(TreeNode root) {
+		List<Integer> list = new ArrayList<Integer>();
+//		helper(list, root);
 		
-		while (node != null) {
-			TreeNode left = node.left;
-			node.left = parentRight;
-			parentRight = node.right;
-			node.right = parent;
-			parent = node;
-			node = left;
-		}
-    	
-    	return parent;
-    }
+		return 0;
+	}
         
-    public TreeNode upsideDownBinaryTree3(TreeNode root) {
+	
+	
+	public int kthSmallest(TreeNode root, int k) {
+		if (root == null) {
+			return 0;
+		}
+		
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		int count = 0;
+	
+		while (!stack.isEmpty() || root != null) {
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+			
+			if (!stack.isEmpty()) {
+				root = stack.pop();
+				if (++count == k) {
+					return root.val;
+				}
+				root = root.right;
+			}
+		}
+		
+		return 0;
+    }
+
+
+	public TreeNode upsideDownBinaryTree3(TreeNode root) {
 		if (root == null) {
 			return null;
 		}
